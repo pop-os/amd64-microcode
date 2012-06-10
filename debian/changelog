@@ -1,0 +1,24 @@
+amd64-microcode (0.20120117-1) unstable; urgency=medium
+
+  * AMD microcode release 20120117:
+    sig 0x00100F22, id 0x01000083: errata 244, 260, 280, 302, 308, 315, 342;
+    sig 0x00100F23, id 0x01000083: errata 244, 260, 280, 302, 308, 315, 342;
+    sig 0x00100F2A, id 0x01000084: errata 244, 260, 280, 302, 308, 315, 342;
+    sig 0x00100F42, id 0x010000DB: errata 342, 440, 573;
+    sig 0x00100F43, id 0x010000C8: errata 407, 440;
+    sig 0x00100F52, id 0x010000DB: errata 342, 440, 573;
+    sig 0x00100F53, id 0x010000C8: errata 407, 440;
+    sig 0x00100F62, id 0x010000C7: errata 407, 440;
+    sig 0x00100F63, id 0x010000C8: errata 407, 440;
+    sig 0x00100F80, id 0x010000DA: errata 419, 440, 573;
+    sig 0x00100F81, id 0x010000D9: errata 406, 407, 440, 573, 669;
+    sig 0x00100F91, id 0x010000D9: errata 406, 407, 440, 573, 669;
+    sig 0x00100FA0, id 0x010000DC: errata 438, 440, 573;
+    sig 0x00300F10, id 0x03000027: errata 564, 573, 662, 686;
+    sig 0x00500F10, id 0x05000028: errata 461, 564, 594, 595;
+    sig 0x00500F20, id 0x0500010D: errata 461, 564, 594, 639, 662, 686;
+    sig 0x00600F12, id 0x06000624: errata 659, 660, 661, 668, 671, 672, 673;
+  * Initial upload to Debian, urgency medium because we need this in Wheezy
+    to properly support AMD processors.  Closes: #676921.
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Sun, 10 Jun 2012 12:22:01 -0300

@@ -1,0 +1,24 @@
+Source: amd64-microcode
+Section: non-free/admin
+Priority: extra
+Maintainer: Henrique de Moraes Holschuh <hmh@debian.org>
+Uploaders: Giacomo Catenazzi <cate@debian.org>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.9.3
+Homepage: http://www.amd64.org/support/microcode.html
+XS-Autobuild: yes
+
+Package: amd64-microcode
+Architecture: i386 amd64
+Depends: ${misc:Depends}
+Description: Processor microcode firmware for AMD CPUs
+ The microcode data file for Linux contains the latest microcode
+ definitions for all AMD AMD64 processors.  AMD releases microcode
+ updates to correct processor behavior as documented in the
+ respective processor revision guides.  While the regular
+ approach to getting this microcode update is via a BIOS upgrade,
+ AMD realizes that this is an administrative hassle; the Linux
+ Operating System has a mechanism to update the microcode after
+ booting the OS.
+ .
+ For Intel processors, please refer to the intel-microcode package.
