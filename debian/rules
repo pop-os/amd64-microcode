@@ -28,6 +28,13 @@ install:
 	dh_installdirs
 	dh_install
 
+	mkdir -p "$(PKGDIR)/usr/share/initramfs-tools/hooks"
+	install -m 755 "$(DEBDIR)/initramfs.hook" \
+		"$(PKGDIR)/usr/share/initramfs-tools/hooks/$(PACKAGE)"
+	mkdir -p "$(PKGDIR)/usr/share/initramfs-tools/scripts/init-premount"
+	install -m 755 "$(DEBDIR)/initramfs.init-premount" \
+		"$(PKGDIR)/usr/share/initramfs-tools/scripts/init-premount/$(PACKAGE)"
+
 binary: install
 	dh_testdir
 	dh_testroot

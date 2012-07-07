@@ -1,0 +1,53 @@
+#!/bin/sh
+# amd64-microcode initramfs-tools hook script
+# Copyright (C) 2012 Henrique de Moraes Holschuh <hmh@hmh.eng.br>
+# Released under the GPL v2 or later license
+#
+# Generates a copy of the minimal microcode for the current system if
+# possible, and installs it in the initramfs.
+#
+
+PREREQ=""
+
+prereqs()
+{
+   echo "$PREREQ"
+}
+
+case $1 in
+prereqs)
+   prereqs
+   exit 0
+   ;;
+esac
+
+. /usr/share/initramfs-tools/hook-functions
+
+verbose()
+{
+	if [ "${verbose}" = "y" ] ; then
+		echo "amd64-microcode: $@"
+	fi
+	:
+}
+
+AUCODE_FW_DIR=/lib/firmware/amd-ucode
+
+if [ ! -d "${AUCODE_FW_DIR}" ] ; then
+	verbose "no AMD64 processor microcode datafiles to install"
+	exit 0;
+fi
+
+verbose "installing all microcode datafiles for AMD64 processors"
+
+# Generate firmware dir
+mkdir -m 755 -p "${DESTDIR}${AUCODE_FW_DIR}" || true
+cp -fr "${AUCODE_FW_DIR}/." "${DESTDIR}${AUCODE_FW_DIR}/."
+
+if ! rmdir "${DESTDIR}${AUCODE_FW_DIR}" 2>/dev/null ; then
+	# The directory was not empty, so we have work to do
+	verbose "installing AMD64 processor microcode update support into initramfs..."
+	force_load microcode
+fi
+
+:
