@@ -9,7 +9,7 @@ often important for safe, correct system operation.
 
 While most of the microcode updates fix problems that happen extremely
 rarely, there are enough updates fixing issues that would cause system
-lockup, memory corruption, or unpredictable system behaviour, to warrant
+lockup, memory corruption, or unpredictable system behavior, to warrant
 taking it seriously.
 
 Microcode updates are ephemeral: they will be lost after a processor hard
@@ -27,6 +27,20 @@ updates is in place, the processor in many systems will be running with
 outdated microcode, increasing the chances of incorrect system operation.
 
 Debian can apply microcode updates to the system processors during the
-operating system boot.
+operating system boot.  The following configurations are supported for
+the microcode driver:
 
- -- Henrique de Moraes Holschuh <hmh@debian.org> Sun Jun 10 10:57:50 BRT 2012
+1. When an initramfs image is used (Debian default), both modular and
+   built-in configs for the microcode driver will work, and microcode
+   will be updated by the initramfs.  You must run "update-initramfs -u"
+   when new microcode is manually installed to /lib/firmware (this will
+   be done automatically when new microcode is installed by a package
+   upgrade).
+
+2. When an initramfs image is not used, only the modular microcode
+   driver is supported.  If it doesn't autoload by itself in your kernel
+   version, you should add it to /etc/modules.  You must install the
+   kmod package, and the root filesystem with /lib/firmware must be
+   available when the modules are loaded.
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>, 2012-07-09
