@@ -1,3 +1,15 @@
+amd64-microcode (1.20120117-1) unstable; urgency=low
+
+  * Update ABI (first component of package version) to 1, to match
+    the ABI of intel-microcode packages with /lib/firmware support
+  * Update online processor cores and the initramfs image on package
+    upgrade and the initramfs on package removal
+  * Install initramfs-tools helpers to handle boot-time microcode
+    updates
+  * README.Debian: describe supported mod/built-in configs
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Mon, 09 Jul 2012 19:31:47 -0300
+
 amd64-microcode (0.20120117-1) unstable; urgency=medium
 
   * AMD microcode release 20120117:
