@@ -6,6 +6,8 @@ Uploaders: Giacomo Catenazzi <cate@debian.org>
 Build-Depends: debhelper (>= 7)
 Standards-Version: 3.9.3
 Homepage: http://www.amd64.org/support/microcode.html
+Vcs-Git: git://git.debian.org/users/hmh/amd64-microcode.git
+Vcs-Browser: http://git.debian.org/?p=users/hmh/amd64-microcode.git
 XS-Autobuild: yes
 
 Package: amd64-microcode
