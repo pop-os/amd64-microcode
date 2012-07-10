@@ -1,3 +1,11 @@
+amd64-microcode (1.20120117-2) unstable; urgency=low
+
+  * debian/control: priority of this package should be standard,
+    not extra.  All AMD-based X86 boxes should install this package
+  * debian/control: update package description
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Mon, 09 Jul 2012 21:50:35 -0300
+
 amd64-microcode (1.20120117-1) unstable; urgency=low
 
   * Update ABI (first component of package version) to 1, to match
