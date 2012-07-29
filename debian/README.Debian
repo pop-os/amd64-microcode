@@ -39,8 +39,8 @@ the microcode driver:
 
 2. When an initramfs image is not used, only the modular microcode
    driver is supported.  If it doesn't autoload by itself in your kernel
-   version, you should add it to /etc/modules.  You must install the
-   kmod package, and the root filesystem with /lib/firmware must be
-   available when the modules are loaded.
+   version, you should add it to /etc/modules.  You must install either
+   the kmod or module-init-tools package, and the root filesystem with
+   /lib/firmware must be available when the modules are loaded.
 
  -- Henrique de Moraes Holschuh <hmh@debian.org>, 2012-07-09
