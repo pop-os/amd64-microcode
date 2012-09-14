@@ -3,10 +3,10 @@ INSTALLING AMD microcode patch container files
 Linux
 
   # cd /tmp
-  # tar xf /path/to/amd-ucode-2012-01-17.tar
+  # tar xf /path/to/amd-ucode-2012-09-10.tar
   # mkdir -p  /lib/firmware/amd-ucode
-  # mv amd-ucode-2012-01-17/microcode_amd.bin /lib/firmware/amd-ucode
-  # mv amd-ucode-2012-01-17/microcode_amd_fam15h.bin /lib/firmware/amd-ucode
+  # mv amd-ucode-2012-09-10/microcode_amd.bin /lib/firmware/amd-ucode
+  # mv amd-ucode-2012-09-10/microcode_amd_fam15h.bin /lib/firmware/amd-ucode
   # modprobe -r microcode
   # modprobe microcode
 
@@ -14,8 +14,8 @@ Linux
 Solaris
 
   # cd /tmp
-  # tar xf /path/to/amd-ucode-2012-01-17.tar
-  # mv amd-ucode-2012-01-17/microcode_amd_solaris.bin /platform/i86pc/ucode/amd-ucode.bin
+  # tar xf /path/to/amd-ucode-2012-09-10.tar
+  # mv amd-ucode-2012-09-10/microcode_amd_solaris.bin /platform/i86pc/ucode/amd-ucode.bin
 
   and finally
 

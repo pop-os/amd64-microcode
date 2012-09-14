@@ -24,7 +24,8 @@ The container files include following microcode patches:
     mc_patch_03000027_PUB-v1/mc_patch_03000027.asm
     mc_patch_05000028_PUB-v3/mc_patch_05000028.asm
     mc_patch_0500010D_PUB-v1/mc_patch_0500010D.asm
-    mc_patch_06000624_PUB-v1/mc_patch_06000624.asm
+    mc_patch_06000629_PUB-v1/mc_patch_06000629.asm
+    mc_patch_06001119_PUB-v1/mc_patch_06001119.asm
 
 ***********************************************************************
 Copyright 2008, 2012 ADVANCED MICRO DEVICES, INC.  All Rights Reserved.
