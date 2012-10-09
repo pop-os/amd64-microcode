@@ -9,7 +9,7 @@
 
 # dependencies: firmware loader, microcode kernel support (built-in/module)
 
-PREREQ="udev"
+PREREQ=""
 
 prereqs()
 {

@@ -10,6 +10,9 @@ PKGDIR  := $(DEBDIR)/$(PACKAGE)
 # DebHelper control
 export DH_ALWAYS_EXCLUDE=CVS:.svn:.git
 
+# Work around Debian bug #688794
+INITRAMFS_NAME := $(subst -,_,$(subst +,_,$(subst .,_,$(PACKAGE))))
+
 build-indep:
 
 build-arch:
@@ -30,10 +33,10 @@ install:
 
 	mkdir -p "$(PKGDIR)/usr/share/initramfs-tools/hooks"
 	install -m 755 "$(DEBDIR)/initramfs.hook" \
-		"$(PKGDIR)/usr/share/initramfs-tools/hooks/$(PACKAGE)"
+		"$(PKGDIR)/usr/share/initramfs-tools/hooks/$(INITRAMFS_NAME)"
 	mkdir -p "$(PKGDIR)/usr/share/initramfs-tools/scripts/init-premount"
 	install -m 755 "$(DEBDIR)/initramfs.init-premount" \
-		"$(PKGDIR)/usr/share/initramfs-tools/scripts/init-premount/$(PACKAGE)"
+		"$(PKGDIR)/usr/share/initramfs-tools/scripts/init-premount/$(INITRAMFS_NAME)"
 
 binary: install
 	dh_testdir
