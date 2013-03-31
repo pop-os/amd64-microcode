@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# /etc/kernel/preinst.d amd64-microcode script
+# Copyright (C) 2013 Henrique de Moraes Holschuh <hmh@hmh.eng.br>
+# Released under the GPL v2 or later license
+#
+# This script makes sure the microcode module is loaded, before the
+# kernel image has a chance to replace it with a new one that might not
+# be compatible with the current kernel.
+#
+# We need the microcode module to update microcode on postinst.
+#
+
+modprobe -q microcode || true
+
+:
