@@ -39,6 +39,23 @@ if [ ! -d "${AUCODE_FW_DIR}" ] ; then
 fi
 
 if grep -q "^vendor_id[[:blank:]]*:[[:blank:]]*.*AuthenticAMD" /proc/cpuinfo; then
+	# See Debian bug #716917.  Blacklist all non-LTS/non-Debian kernel versions
+	# before kernel 3.4  Only known-bad kernel is 2.6.38.
+	#
+	# This doesn't blacklist early kernels in the LTS branches, we don't have enough
+	# information at the initramfs-tools layer, due to the way Debian and Ubuntu version
+	# kernel packages.
+
+	if dpkg --compare-versions ${version} le 3.4 && \
+	     { dpkg --compare-versions ${version} lt 2.6.32 || \
+	      { dpkg --compare-versions ${version} ge 2.6.33 && dpkg --compare-versions ${version} lt 3.0 ; } || \
+	      { dpkg --compare-versions ${version} ge 3.1 && dpkg --compare-versions ${version} lt 3.2 ; } || \
+	      dpkg --compare-versions ${version} ge 3.3 ; \
+	     }; then
+		echo "E: amd64-microcode: unsupported kernel version!" >&2
+		exit 0
+	fi
+
 	verbose "installing all microcode datafiles for AMD64 processors"
 
 	# Generate firmware dir
