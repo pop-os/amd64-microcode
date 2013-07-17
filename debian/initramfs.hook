@@ -38,16 +38,18 @@ if [ ! -d "${AUCODE_FW_DIR}" ] ; then
 	exit 0;
 fi
 
-verbose "installing all microcode datafiles for AMD64 processors"
+if grep -q "^vendor_id[[:blank:]]*:[[:blank:]]*.*AuthenticAMD" /proc/cpuinfo; then
+	verbose "installing all microcode datafiles for AMD64 processors"
 
-# Generate firmware dir
-mkdir -m 755 -p "${DESTDIR}${AUCODE_FW_DIR}" || true
-cp -fr "${AUCODE_FW_DIR}/." "${DESTDIR}${AUCODE_FW_DIR}/."
+	# Generate firmware dir
+	mkdir -m 755 -p "${DESTDIR}${AUCODE_FW_DIR}" || true
+	cp -fr "${AUCODE_FW_DIR}/." "${DESTDIR}${AUCODE_FW_DIR}/."
 
-if ! rmdir "${DESTDIR}${AUCODE_FW_DIR}" 2>/dev/null ; then
-	# The directory was not empty, so we have work to do
-	verbose "installing AMD64 processor microcode update support into initramfs..."
-	force_load microcode
+	if ! rmdir "${DESTDIR}${AUCODE_FW_DIR}" 2>/dev/null ; then
+		# The directory was not empty, so we have work to do
+		verbose "installing AMD64 processor microcode update support into initramfs..."
+		force_load microcode
+	fi
 fi
 
 :
