@@ -1,6 +1,6 @@
 #!/bin/sh
 # amd64-microcode initramfs-tools hook script
-# Copyright (C) 2012 Henrique de Moraes Holschuh <hmh@hmh.eng.br>
+# Copyright (C) 2012,2013 Henrique de Moraes Holschuh <hmh@debian.org>
 # Released under the GPL v2 or later license
 #
 # Generates a copy of the minimal microcode for the current system if
