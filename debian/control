@@ -4,8 +4,7 @@ Priority: standard
 Maintainer: Henrique de Moraes Holschuh <hmh@debian.org>
 Uploaders: Giacomo Catenazzi <cate@debian.org>
 Build-Depends: debhelper (>= 7)
-Standards-Version: 3.9.3
-Homepage: http://www.amd64.org/support/microcode.html
+Standards-Version: 3.9.4
 Vcs-Git: git://git.debian.org/users/hmh/amd64-microcode.git
 Vcs-Browser: http://git.debian.org/?p=users/hmh/amd64-microcode.git
 XS-Autobuild: yes
@@ -13,6 +12,7 @@ XS-Autobuild: yes
 Package: amd64-microcode
 Architecture: i386 amd64
 Depends: ${misc:Depends}
+Breaks: intel-microcode (<< 1.20130222.6~)
 Description: Processor microcode firmware for AMD CPUs
  This package contains microcode patches for all AMD AMD64
  processors.  AMD releases microcode patches to correct

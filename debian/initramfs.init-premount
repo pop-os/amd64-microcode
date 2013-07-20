@@ -1,6 +1,6 @@
 #!/bin/sh
-# processor-ucode-common initramfs-tools boot script
-# Copyright (C) 2012 Henrique de Moraes Holschuh <hmh@hmh.eng.br>
+# amd64-microcode initramfs-tools boot script
+# Copyright (C) 2012,2013 Henrique de Moraes Holschuh <hmh@debian.org>
 # Released under the GPL v2 or later license
 #
 # Triggers kernel firmware update requests for processor microcode
@@ -23,11 +23,22 @@ prereqs)
    ;;
 esac
 
+# hack to strip spaces
+is_amd()
+{
+    [ "x$1" = "xvendor_id" ] && [ "x$2" = "xAuthenticAMD" ] && HAS_AMD=1
+}
+
 # Only continue if we do possibly have firmware to install
-[ -d /lib/firmware/intel-ucode -o -d /lib/firmware/amd-ucode ] || exit 0
+[ -d /lib/firmware/amd-ucode ] || exit 0
 
 # module load will already have caused the microcode to be fetched
-{ while read -r module trash ; do [ "x$module" = "xmicrocode" ] && exit 0 ; done } < /proc/modules
+{ while read -r module trash ; do [ "x$module" = "xmicrocode" ] && exit 0 ; done ; } < /proc/modules
+
+# don't run on non-AMD
+HAS_AMD=0
+{ while IFS=: read -r field value ; do is_amd $field $value ; done ; } < /proc/cpuinfo
+[ $HAS_AMD -eq 0 ] && exit 0;
 
 . /scripts/functions
 

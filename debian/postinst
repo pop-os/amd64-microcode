@@ -19,24 +19,47 @@ set -e
 
 case "$1" in
     configure)
-	if [ -e /sys/devices/system/cpu/microcode/reload ] ; then
-	    echo "Updating microcode on all online processors..." >&2
-	    echo 1 > /sys/devices/system/cpu/microcode/reload || {
-	        echo "Kernel reported failure while updating microcode!" >&2
-            }
+	# See Debian bug #716917.  Blacklist all non-LTS/non-Debian kernel versions
+	# before kernel 3.4 that don't have all microcode fixes as of 2013-07-17.
+	# Only known-bad kernel is 2.6.38.  2.6.32.37 presumed good based on lack of
+	# reports by Debian squeeze backport users.
+	kversion=$(uname -r)
+	if dpkg --compare-versions ${kversion} le 3.4.21 && \
+	     { dpkg --compare-versions ${kversion} lt 2.6.32.58 || \
+	      { dpkg --compare-versions ${kversion} ge 2.6.33 && dpkg --compare-versions ${kversion} lt 3.0.54 ; } || \
+	      { dpkg --compare-versions ${kversion} ge 3.1 && dpkg --compare-versions ${kversion} lt 3.2.35 ; } || \
+	      dpkg --compare-versions ${kversion} ge 3.3 ; \
+	     }; then
+		echo "W: amd64-microcode: unsupported kernel version ${kversion}" >&2
 	else
-	    # Try all online processors, broken kernels need this,
-	    # fixed kernels will accept it only on the BSP and update
-	    # all processors anyway, and -EINVAL all others... but we
-	    # don't know which one is the BSP, so we try all of them
-	    # and hide errors, the kernel will log any real problem.
-	    echo "Using per-core interface to update microcode on online processors..." >&2
-	    find /sys/devices/system/cpu -noleaf -type f -path '/sys/devices/system/cpu/cpu*/microcode/reload' | \
-		while read i ; do echo -n 1 2>/dev/null >"$i" || true ; done
-	fi
-	# do it like udev and firmware-linux-*
-	if [ -x /usr/sbin/update-initramfs -a -e /etc/initramfs-tools/initramfs.conf ] ; then
-		update-initramfs -u
+	    grep -q "^vendor_id[[:blank:]]*:[[:blank:]]*.*AuthenticAMD" /proc/cpuinfo && {
+		# try to load the microcode module just in case.  If we succeed,
+		# it will trigger a microcode update by itself
+		if modprobe -q --first-time microcode ; then
+		    echo "Updating microcode on all online processors..." >&2
+		else
+		    # we have to trigger the microcode update manually
+		    if [ -e /sys/devices/system/cpu/microcode/reload ] ; then
+			echo "Updating microcode on all online processors..." >&2
+			echo 1 > /sys/devices/system/cpu/microcode/reload || {
+			    echo "Kernel reported failure while updating microcode!" >&2
+			}
+		    else
+			# Try all online processors, broken kernels need this,
+			# fixed kernels will accept it only on the BSP and update
+			# all processors anyway, and -EINVAL all others... but we
+			# don't know which one is the BSP, so we try all of them
+			# and hide errors, the kernel will log any real problem.
+			echo "Using per-core interface to update microcode on online processors..." >&2
+			find /sys/devices/system/cpu -noleaf -type f -path '/sys/devices/system/cpu/cpu*/microcode/reload' | \
+			    while read i ; do echo -n 1 2>/dev/null >"$i" || true ; done
+		    fi
+		fi
+	    }
+	    # do it like udev and firmware-linux-*
+	    if [ -x /usr/sbin/update-initramfs -a -e /etc/initramfs-tools/initramfs.conf ] ; then
+		    update-initramfs -u
+	    fi
 	fi
     ;;
 

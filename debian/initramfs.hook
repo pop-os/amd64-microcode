@@ -1,6 +1,6 @@
 #!/bin/sh
 # amd64-microcode initramfs-tools hook script
-# Copyright (C) 2012 Henrique de Moraes Holschuh <hmh@hmh.eng.br>
+# Copyright (C) 2012,2013 Henrique de Moraes Holschuh <hmh@debian.org>
 # Released under the GPL v2 or later license
 #
 # Generates a copy of the minimal microcode for the current system if
@@ -38,16 +38,35 @@ if [ ! -d "${AUCODE_FW_DIR}" ] ; then
 	exit 0;
 fi
 
-verbose "installing all microcode datafiles for AMD64 processors"
+if grep -q "^vendor_id[[:blank:]]*:[[:blank:]]*.*AuthenticAMD" /proc/cpuinfo; then
+	# See Debian bug #716917.  Blacklist all non-LTS/non-Debian kernel versions
+	# before kernel 3.4  Only known-bad kernel is 2.6.38.
+	#
+	# This doesn't blacklist early kernels in the LTS branches, we don't have enough
+	# information at the initramfs-tools layer, due to the way Debian and Ubuntu version
+	# kernel packages.
 
-# Generate firmware dir
-mkdir -m 755 -p "${DESTDIR}${AUCODE_FW_DIR}" || true
-cp -fr "${AUCODE_FW_DIR}/." "${DESTDIR}${AUCODE_FW_DIR}/."
+	if dpkg --compare-versions ${version} le 3.4 && \
+	     { dpkg --compare-versions ${version} lt 2.6.32 || \
+	      { dpkg --compare-versions ${version} ge 2.6.33 && dpkg --compare-versions ${version} lt 3.0 ; } || \
+	      { dpkg --compare-versions ${version} ge 3.1 && dpkg --compare-versions ${version} lt 3.2 ; } || \
+	      dpkg --compare-versions ${version} ge 3.3 ; \
+	     }; then
+		echo "E: amd64-microcode: unsupported kernel version!" >&2
+		exit 0
+	fi
 
-if ! rmdir "${DESTDIR}${AUCODE_FW_DIR}" 2>/dev/null ; then
-	# The directory was not empty, so we have work to do
-	verbose "installing AMD64 processor microcode update support into initramfs..."
-	force_load microcode
+	verbose "installing all microcode datafiles for AMD64 processors"
+
+	# Generate firmware dir
+	mkdir -m 755 -p "${DESTDIR}${AUCODE_FW_DIR}" || true
+	cp -fr "${AUCODE_FW_DIR}/." "${DESTDIR}${AUCODE_FW_DIR}/."
+
+	if ! rmdir "${DESTDIR}${AUCODE_FW_DIR}" 2>/dev/null ; then
+		# The directory was not empty, so we have work to do
+		verbose "installing AMD64 processor microcode update support into initramfs..."
+		force_load microcode
+	fi
 fi
 
 :
