@@ -1,3 +1,14 @@
+amd64-microcode (1.20120910-3) unstable; urgency=low
+
+  * control: remove homepage and update standards-version
+  * initramfs: update copyright information
+  * initramfs, postinst: don't do anything on non-AMD systems (Closes: #715518)
+  * initramfs, postinst: blacklist several kernel versions (Closes: #717185)
+  * control: add breaks: intel-microcode (<< 1.20130222.6~)
+  * load microcode module on package install/upgrade
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Sat, 20 Jul 2013 12:45:04 -0300
+
 amd64-microcode (1.20120910-2) unstable; urgency=medium
 
   * initramfs: work around initramfs-tools bug #688794.
