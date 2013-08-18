@@ -1,3 +1,18 @@
+amd64-microcode (2.20120910-1) unstable; urgency=high
+
+  * debian/control: update Breaks for new intel-microcode version scheme
+  * Bump major version number, this will allow us to also update the stable
+    branch of amd64-microcode in the future without clashing with the stable
+    branch of intel-microcode.  The real issue is that amd64-microcode
+    1.20120910-3 and intel-microcode 1.20130222.6 have changed (in lockstep)
+    to a different initramfs cooperation protocol, but I failed to bump the
+    major version at that time
+  * Urgency high to avoid delaying a series of high-priority intel-microcode
+    updates being done at the moment: we need this version in testing before
+    I can upload stable backports of intel-microcode or amd64-microcode
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Sun, 18 Aug 2013 16:19:42 -0300
+
 amd64-microcode (1.20120910-3) unstable; urgency=low
 
   * control: remove homepage and update standards-version
