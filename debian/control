@@ -12,7 +12,7 @@ XS-Autobuild: yes
 Package: amd64-microcode
 Architecture: i386 amd64
 Depends: ${misc:Depends}
-Breaks: intel-microcode (<< 1.20130222.6~)
+Breaks: intel-microcode (<< 2)
 Description: Processor microcode firmware for AMD CPUs
  This package contains microcode patches for all AMD AMD64
  processors.  AMD releases microcode patches to correct
