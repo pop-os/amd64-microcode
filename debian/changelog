@@ -1,3 +1,21 @@
+amd64-microcode (2.20131007.1) unstable; urgency=low
+
+  * New upstream release, received through linux-firmware and LKML
+    + updated microcode:
+      sig 0x00500F10, id 0x05000029: erratum (+) 784;
+      sig 0x00500F20, id 0x05000119: erratum (+) 784;
+      sig 0x00600F12, id 0x0600063D: errata (-) 668, (+) 759, 778;
+    + new microcode:
+      sig 0x00200F31, id 0x02000032: errata 311, 316;
+      sig 0x00600F20, id 0x06000822: errata 691, 699, 704, 708, 709, 734,
+          740, 778;
+    + This update fixes important processor bugs that cause data corruption
+      or unpredictable system behaviour.  It also fixes a performance issue
+      and several issues that cause system lockup.
+  * Switch to native package, since there is no upstream tarball
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Sat, 07 Sep 2013 15:22:09 -0300
+
 amd64-microcode (2.20120910-1) unstable; urgency=high
 
   * debian/control: update Breaks for new intel-microcode version scheme
