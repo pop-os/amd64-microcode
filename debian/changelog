@@ -1,3 +1,10 @@
+amd64-microcode (2.20131007.1+really20130710.1) unstable; urgency=low
+
+  * Fix M-D-Y issue that leaked to the package version number
+  * The real upstream release date is 2013-07-10
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Sat, 07 Sep 2013 22:22:00 -0300
+
 amd64-microcode (2.20131007.1) unstable; urgency=low
 
   * New upstream release, received through linux-firmware and LKML
