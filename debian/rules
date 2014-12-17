@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 # debian/rules for amd64-microcode
-# Copyright (C) 2012 by Henrique de Moraes Holschuh
+# Copyright (C) 2012-2014 by Henrique de Moraes Holschuh
 # Published under the GNU GPL license version 2 or any later versions
 
 PACKAGE := amd64-microcode
@@ -37,6 +37,9 @@ install:
 	mkdir -p "$(PKGDIR)/usr/share/initramfs-tools/scripts/init-premount"
 	install -m 755 "$(DEBDIR)/initramfs.init-premount" \
 		"$(PKGDIR)/usr/share/initramfs-tools/scripts/init-premount/$(INITRAMFS_NAME)"
+
+	# We have a /etc/default file, but no initscript
+	install -m 644 "$(DEBDIR)/default" "$(PKGDIR)/etc/default/$(PACKAGE)"
 
 	# modprobe.d blacklist
 	install -m 644 "$(DEBDIR)/modprobe-blacklist" "$(PKGDIR)/etc/modprobe.d/$(PACKAGE)-blacklist.conf"
