@@ -1,0 +1,16 @@
+# Configuration script for amd64-microcode version 2
+
+#
+# initramfs helper
+#
+
+# Set this to "no" to disable automatic microcode updates on boot;
+# Set this to "yes" to always install microcode updates to the initramfs;
+# Set this to "auto" to use initramfs mode automatically (default);
+#
+# Note: "early" mode is not yet supported in amd64-microcode version 2.
+# It will be implemented in version 3, at which point "yes" will alias
+# to "early", and only "early microcode updates" will be supported.
+#
+#AMD64UCODE_INITRAMFS=auto
+

@@ -1,2 +1,3 @@
+etc/default
 etc/modprobe.d
 lib/firmware/amd-ucode
