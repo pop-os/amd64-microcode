@@ -1,9 +1,9 @@
 This package was debianized by Henrique de Moraes Holschuh <hmh@debian.org> on
 Sun Jun 10 10:54:36 BRT 2012
 
-It was downloaded from http://www.amd64.org/support/microcode.html up to version
-20120910.  It was built from the linux-firmware git tree for version 20131007
-onwards.
+It was downloaded from http://www.amd64.org/support/microcode.html up to
+version 20120910 (now: http://www.amd64.org/microcode.html).  It was built from
+the linux-firmware git tree at  for version 20131007 onwards.
 
 Debian only distributes the AMD64 microcode file in its unaltered form.
 
