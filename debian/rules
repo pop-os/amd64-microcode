@@ -37,9 +37,6 @@ install:
 	mkdir -p "$(PKGDIR)/usr/share/initramfs-tools/scripts/init-premount"
 	install -m 755 "$(DEBDIR)/initramfs.init-premount" \
 		"$(PKGDIR)/usr/share/initramfs-tools/scripts/init-premount/$(INITRAMFS_NAME)"
-	mkdir -p "$(PKGDIR)/etc/kernel/preinst.d"
-	install -m 755 "$(DEBDIR)/kpreinst" \
-		"$(PKGDIR)/etc/kernel/preinst.d/$(PACKAGE)"
 
 binary: install
 	dh_testdir
