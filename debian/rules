@@ -38,6 +38,9 @@ install:
 	install -m 755 "$(DEBDIR)/initramfs.init-premount" \
 		"$(PKGDIR)/usr/share/initramfs-tools/scripts/init-premount/$(INITRAMFS_NAME)"
 
+	# modprobe.d blacklist
+	install -m 644 "$(DEBDIR)/modprobe-blacklist" "$(PKGDIR)/etc/modprobe.d/$(PACKAGE)-blacklist.conf"
+
 binary: install
 	dh_testdir
 	dh_testroot
