@@ -1,46 +1,30 @@
-This package provides latest microcode patches
-for AMD processor families >= 0x10.
+This amd64-microcode release was based on the linux-firmware tree.
 
-See http://www.amd64.org/support/microcode.html
-for details.
+commit 8ac569dd3ca3ca685bd47ee86c1eeb6050864db3
+Author: Sherry Hurwitz <sherry.hurwitz@amd.com>
+Date:   Thu Nov 6 19:38:26 2014 -0600
 
-Microcode patches are included in container files:
-- 'microcode_amd.bin' (for AMD CPU families 10h - 14h)
-- 'microcode_amd_fam15h.bin' (for AMD CPU family 15h)
+    linux-firmware: Update AMD microcode patch firmware files
 
-Please read the file INSTALL for install instructions.
-Please read the file LICENSE for licensing information.
+    For AMD Family 15h Processors
+    file:   amd-ucode/microcode_amd_family15h.bin
+    md5sum: ee3f0f46936aa1788dc31ca3487e0ff3
 
-The container files include following microcode patches:
+    For AMD Family 16h Processors
+    file:   amd-ucode/microcode_amd_family16h.bin
+    md5sum: 6a47a6393c52ddfc0b5b044efc076a77
 
-    mc_patch_01000083_PUB-v4/mc_patch_01000083.asm
-    mc_patch_01000084_PUB-v4/mc_patch_01000084.asm
-    mc_patch_010000C7_PUB-v1/mc_patch_010000C7.asm
-    mc_patch_010000C8_PUB-v1/mc_patch_010000C8.asm
-    mc_patch_010000D9_PUB-v1/mc_patch_010000D9.asm
-    mc_patch_010000DA_PUB-v1/mc_patch_010000DA.asm
-    mc_patch_010000DB_PUB-v1/mc_patch_010000DB.asm
-    mc_patch_010000DC_PUB-v1/mc_patch_010000DC.asm
-    mc_patch_02000032_PUB-v3/mc_patch_02000032.asm
-    mc_patch_03000027_PUB-v1/mc_patch_03000027.asm
-    mc_patch_05000029_PUB-v1/mc_patch_05000029.asm
-    mc_patch_05000119_PUB-v1/mc_patch_05000119.asm
-    mc_patch_0600063D_PUB-v1/mc_patch_0600063D.asm
-    mc_patch_06000822_PUB-v1/mc_patch_06000822.asm
-    mc_patch_06001119_PUB-v2/mc_patch_06001119.asm
+    Version: 2014_10_28
+    Signed-off-by: Sherry Hurwitz <sherry.hurwitz@amd.com>
+    Signed-off-by: Kyle McMartin <kyle@kernel.org>
 
-***********************************************************************
-Copyright 2008-2013 ADVANCED MICRO DEVICES, INC.  All Rights Reserved.
+LICENSE.amd-ucode                      |    2 +-
+amd-ucode/microcode_amd_fam15h.bin     |binary
+amd-ucode/microcode_amd_fam15h.bin.asc |   16 ++++++++--------
+amd-ucode/microcode_amd_fam16h.bin     |binary
+amd-ucode/microcode_amd_fam16h.bin.asc |   11 +++++++++++
+6 files changed, 23 insertions(+), 10 deletions(-)
 
-AMD is granting you permission to use this software and documentation
-(if any) (collectively, the “Materials”) pursuant to the terms and
-conditions of the Software License Agreement included with the
-Materials.  This header does NOT give you permission to use the
-Materials or any rights under AMD’s intellectual property.  Your use
-of any portion of these Materials shall constitute your acceptance of
-those terms and conditions.  If you do not agree to the terms and
-conditions of the Software License Agreement, you do not have
-permission to use any portion of these Materials.  If you do not have
-a copy of the Software License Agreement, contact your AMD
-representative for a copy.
-
+AMD did not update the relevant microcode documentation (errata fixed,
+microcode patch levels, etc), so there is no documentation for the family 0x16
+microcode patches, and the documentation for family 0x15 might be stale.
