@@ -27,7 +27,7 @@ esac
 verbose()
 {
 	if [ "${verbose}" = "y" ] ; then
-		echo "amd64-microcode: $@"
+		echo "amd64-microcode: $*"
 	fi
 	:
 }
@@ -73,11 +73,11 @@ fi
 # information at the initramfs-tools layer, due to the way Debian and Ubuntu version
 # kernel packages.
 
-if dpkg --compare-versions ${version} le 3.4 && \
-     { dpkg --compare-versions ${version} lt 2.6.32 || \
-      { dpkg --compare-versions ${version} ge 2.6.33 && dpkg --compare-versions ${version} lt 3.0 ; } || \
-      { dpkg --compare-versions ${version} ge 3.1 && dpkg --compare-versions ${version} lt 3.2 ; } || \
-      dpkg --compare-versions ${version} ge 3.3 ; \
+if dpkg --compare-versions "${version}" le 3.4 && \
+     { dpkg --compare-versions "${version}" lt 2.6.32 || \
+      { dpkg --compare-versions "${version}" ge 2.6.33 && dpkg --compare-versions "${version}" lt 3.0 ; } || \
+      { dpkg --compare-versions "${version}" ge 3.1 && dpkg --compare-versions "${version}" lt 3.2 ; } || \
+      dpkg --compare-versions "${version}" ge 3.3 ; \
      }; then
 	echo "E: amd64-microcode: unsupported kernel version!" >&2
 	exit 0
