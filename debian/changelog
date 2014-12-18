@@ -1,3 +1,43 @@
+amd64-microcode (2.20141028.1) unstable; urgency=medium
+
+  * Upstream release 20141028 built from linux-firmware:
+    + Updated microcode patches for family 0x15 processors
+    + Added microcode patches for family 0x16 processors
+  * AMD did not update the relevant microcode documentation (errata fixed,
+    microcode patch levels, etc), so there is no documentation for the
+    family 0x16 microcode patches, and the documentation for family 0x15 is
+    stale.
+  * postinst: do not update microcode on upgrades:
+    Remove code that triggers a microcode update on package upgrade.  The
+    resulting postinst script is now identical to the one in Debian jessie's
+    intel-microcode, and thus known-good.
+    NOTE: this code was already disabled for the majority of the users due
+    to Debian bug #723975 (closes: #723975, #723081)
+  * kpreinst: remove, we don't update microcode on postinst anymore
+  * blacklist automated loading of the microcode module:
+    This is in line with the desired behavior of only updating microcode
+    *automatically* during system boot, when it is safer to do so.  The
+    local admin can still load the microcode module and update the microcode
+    manually at any time, of course.  This is in sync with the intel-microcode
+    packages in Debian jessie, which will also blacklist the microcode module.
+    Note that the initramfs will force-load the microcode module in a safe
+    condition, the blacklist avoids module autoloading outside the initramfs
+  * control: bump standards version (no changes required)
+  * copyright: update upstream URL and upstream copyright date
+    (closes: #753593)
+  * docs: future-proof by using a glob pattern for per-family README files
+  * initramfs hook: support forced installation of amd64-microcode:
+    Add a config file (/etc/default/amd64-microcode) to select the mode of
+    operation: do nothing, force install to initramfs, install only when
+    running on an amd64 processor (closes: #726854)
+  * initramfs hook: fix (likely unexploitable) issues found by shellcheck
+  * Add a NEWS.Debian file to warn users we will no longer update the
+    microcode on package upgrade (note that we were not doing it on any
+    Debian kernels anyway).  Also document the existence of the new
+    /etc/default/amd64-microcode file
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Thu, 18 Dec 2014 13:36:27 -0200
+
 amd64-microcode (2.20131007.1+really20130710.1) unstable; urgency=low
 
   * Fix M-D-Y issue that leaked to the package version number
