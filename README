@@ -1,5 +1,19 @@
 This amd64-microcode release was based on the linux-firmware tree.
 
+From: Sherry Hurwitz <sherry.hurwitz@amd.com>
+Subject: [PATCH 1/1] linux-firmware: Update AMD microcode patch firmware
+Date: 2016-03-17 06:56:11 GMT
+
+    linux-firmware: Update AMD microcode patch firmware
+
+    For AMD Family 15h Processors to fix bugs in prior microcode patch
+    file: amd-ucode/microcode_amd_fam15h.bin
+    md5sum: 2384ef1d8ec8ca3930b62d82ea5a3813
+
+    Version: 2016_03_16
+
+    Signed-off-by: Sherry Hurwitz <sherry.hurwitz@amd.com>
+
 commit 8ac569dd3ca3ca685bd47ee86c1eeb6050864db3
 Author: Sherry Hurwitz <sherry.hurwitz@amd.com>
 Date:   Thu Nov 6 19:38:26 2014 -0600
