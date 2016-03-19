@@ -1,3 +1,30 @@
+amd64-microcode (2.20160316.1) unstable; urgency=critical
+
+  * Upstream release 20160316 built from linux-firmware:
+    + Updated Microcodes:
+      sig 0x00600f20, patch id 0x0600084f, 2016-01-25
+    + This microcode updates fixes a critical erratum on NMI handling
+      introduced by microcode patch id 0x6000832 from the 20141028 update.
+      The erratum is also present on microcode patch id 0x6000836.
+    + THIS IS A CRITICAL STABILITY AND SECURITY UPDATE FOR THE EARLIER
+      AMD PILEDRIVER PROCESSORS, including:
+      + AMD Opteron 3300, 4300, 6300
+      + AMD FX "Vishera" (43xx, 63xx, 83xx, 93xx, 95xx)
+      + AMD processors with family 21, model 2, stepping 0
+  * Robert Święcki, while fuzzing the kernel using the syzkaller tool,
+    uncovered very strange behavior on an AMD FX-8320, later reproduced on
+    other AMD Piledriver model 2, stepping 0 processors including the Opteron
+    6300.  Robert discovered, using his proof-of-concept exploit code, that
+    the incorrect behavior allows an unpriviledged attacker on an unpriviledged
+    VM to corrupt the return stack of the host kernel's NMI handler.  At best,
+    this results in unpredictable host behavior.  At worst, it allows for an
+    unpriviledged user on unpriviledged VM to carry a sucessful host-kernel
+    ring 0 code injection attack.
+  * The erratum is timing-dependant, easily triggered by workloads that cause
+    a high number of NMIs, such as running the "perf" tool.
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Sat, 19 Mar 2016 14:02:44 -0300
+
 amd64-microcode (2.20141028.1) unstable; urgency=medium
 
   * Upstream release 20141028 built from linux-firmware:
