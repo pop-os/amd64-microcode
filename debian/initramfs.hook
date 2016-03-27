@@ -1,11 +1,10 @@
 #!/bin/sh
 # amd64-microcode initramfs-tools hook script
-# Copyright (C) 2012-2014 Henrique de Moraes Holschuh <hmh@debian.org>
+# Copyright (C) 2012-2016 Henrique de Moraes Holschuh <hmh@debian.org>
 # Released under the GPL v2 or later license
 #
-# Generates a copy of the minimal microcode for the current system if
-# possible, and installs it in the initramfs.
-#
+# Generates a copy of the minimal microcode for all AMD processors
+# and installs it to the early initramfs
 
 PREREQ=""
 AMD64UCODE_CONFIG=/etc/default/amd64-microcode
@@ -26,10 +25,10 @@ esac
 
 verbose()
 {
-	if [ "${verbose}" = "y" ] ; then
-		echo "amd64-microcode: $*"
-	fi
-	:
+    if [ "${verbose}" = "y" ] ; then
+        echo "I: amd64-microcode: $*"
+    fi
+    :
 }
 
 AUCODE_FW_DIR=/lib/firmware/amd-ucode
@@ -39,8 +38,8 @@ AMD64UCODE_INITRAMFS=auto
 [ -z "${AMD64UCODE_INITRAMFS}" ] && AMD64UCODE_INITRAMFS=no
 
 if [ ! -d "${AUCODE_FW_DIR}" ] ; then
-	verbose "no AMD64 processor microcode datafiles to install"
-	exit 0;
+    verbose "no AMD64 processor microcode datafiles to install"
+    exit 0
 fi
 
 case "${AMD64UCODE_INITRAMFS}" in
@@ -48,11 +47,11 @@ case "${AMD64UCODE_INITRAMFS}" in
         verbose "disabled by ${AMD64UCODE_CONFIG}"
         exit 0
         ;;
-    early)
-	echo "W: amd64-microcode: early mode not supported, forcing late initramfs mode" >&2
-        AMD64UCODE_INITRAMFS=yes
+    auto|early)
         ;;
-    yes|1|auto)
+    yes|1)
+        echo "W: amd64-microcode: initramfs mode not supported, using early-initramfs mode" >&2
+        AMD64UCODE_INITRAMFS=early
         ;;
     *)
         echo "E: amd64-microcode: invalid AMD64UCODE_INITRAMFS, using automatic mode" >&2
@@ -60,39 +59,52 @@ case "${AMD64UCODE_INITRAMFS}" in
 esac
 
 if [ "${AMD64UCODE_INITRAMFS}" = "auto" ] ; then
-        grep -q "^vendor_id[[:blank:]]*:[[:blank:]]*.*AuthenticAMD" /proc/cpuinfo || {
-                verbose "no AMD processors detected, nothing to do"
-                exit 0
-        }
+    grep -q "^vendor_id[[:blank:]]*:[[:blank:]]*.*AuthenticAMD" /proc/cpuinfo || {
+        verbose "no AMD processors detected, nothing to do"
+        exit 0
+    }
 fi
 
-# See Debian bug #716917.  Blacklist all non-LTS/non-Debian kernel versions
-# before kernel 3.4  Only known-bad kernel is 2.6.38.
-#
-# This doesn't blacklist early kernels in the LTS branches, we don't have enough
-# information at the initramfs-tools layer, due to the way Debian and Ubuntu version
-# kernel packages.
-
-if dpkg --compare-versions "${version}" le 3.4 && \
-     { dpkg --compare-versions "${version}" lt 2.6.32 || \
-      { dpkg --compare-versions "${version}" ge 2.6.33 && dpkg --compare-versions "${version}" lt 3.0 ; } || \
-      { dpkg --compare-versions "${version}" ge 3.1 && dpkg --compare-versions "${version}" lt 3.2 ; } || \
-      dpkg --compare-versions "${version}" ge 3.3 ; \
-     }; then
-	echo "E: amd64-microcode: unsupported kernel version!" >&2
-	exit 0
+# whitelist AMD early updates for kernels 3.14 and later
+if dpkg --compare-versions "${version}" lt 3.14 ; then
+    echo "E: amd64-microcode: unsupported kernel version!" >&2
+    exit 0
 fi
 
-verbose "installing all microcode datafiles for AMD64 processors"
+verbose "installing AMD64 microcode into the early initramfs..."
 
-# Generate firmware dir
-mkdir -m 755 -p "${DESTDIR}${AUCODE_FW_DIR}" || true
-cp -fr "${AUCODE_FW_DIR}/." "${DESTDIR}${AUCODE_FW_DIR}/."
+EFWD=$(mktemp -d "${TMPDIR:-/var/tmp}/mkinitramfs-EFW_XXXXXXXXXX") || {
+    echo "E: amd64-microcode: cannot create temporary directory" >&2
+    exit 1
+}
+# paranoia
+[ ! -d "${EFWD}" ] && {
+    echo "E: amd64-microcode: mktemp -d malfunction" >&2
+    exit 1
+}
 
-if ! rmdir "${DESTDIR}${AUCODE_FW_DIR}" 2>/dev/null ; then
-	# The directory was not empty, so we have work to do
-	verbose "installing AMD64 processor microcode update support into initramfs..."
-	force_load microcode
+EFWE="${EFWD}/early-initramfs.cpio"
+
+EFWCD="${EFWD}/d/kernel/x86/microcode"
+EFWF="${EFWCD}/AuthenticAMD.bin"
+
+mkdir -p "${EFWCD}" && \
+ find "${AUCODE_FW_DIR}/." -maxdepth 1 -type f -print0 | xargs -0 -r cat 2>/dev/null >"${EFWF}" && \
+ test -s "${EFWF}" && \
+ ( cd "${EFWD}/d" ; find . -print0 | sort -z | cpio --null -R 0:0 -H newc -o --quiet > "${EFWE}" ) \
+&& prepend_earlyinitramfs "${EFWE}" || {
+    [ -d "${EFWD}" ] && rm -fr "${EFWD}"
+    echo "E: amd64-microcode: failed to create or prepend the early initramfs to the initramfs" >&2
+    exit 0
+}
+
+[ -d "${EFWD}" ] && rm -fr "${EFWD}"
+
+# force-load microcode module to get proper logging only on kernel < 4.4
+# microcode support cannot be made modular since Linux 4.4
+
+if dpkg --compare-versions "${version}" lt 4.4 ; then
+    force_load microcode
 fi
 
 :
