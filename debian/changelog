@@ -1,3 +1,31 @@
+amd64-microcode (3.20160316.1) unstable; urgency=low
+
+  * Bump major version number to 3: early-initramfs support
+  * Support is now restricted to Linux kernel 3.14 and later.  For older
+    kernels, please use the version 2 (older) branch of the package.
+  * Implement early-initramfs mode, and remove normal mode
+    * debian/control: add versioned recommends for initramfs-tools and
+      dracut.  Note that dracut 044 is required for Linux 4.4 and later,
+      otherwise dracut 040 would be enough
+    * debian/default: add early mode, remove normal mode from comments
+    * initramfs hook: use cpio to generate an early-initramfs with
+      microcode for all processors, blacklist kernels older than 3.14,
+      and remove normal mode support.
+    * initramfs.init-premount: remove, not needed for early-initramfs
+    * debian/rules: don't install init-premount initramfs script.
+  * initramfs.hook: detect a missing microcode.ko and don't attempt to
+    force_load() it.  In verbose mode, log when the microcode driver is
+    modular.  For Linux 4.4 and later, skip the module loading logic
+    (closes: #809444)
+  * README.Debian: update for early initramfs support, and add information
+    on how to disable early updates using the dis_ucode_ldr kernel boot
+    parameter
+  * Support for x32 was enabled in debian/control for the 2.20160316.1
+    upload, but the changelog did not record this by mistake.  The missing
+    entry was retroactively added to debian/changelog by this upload
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Sun, 10 Apr 2016 16:31:23 -0300
+
 amd64-microcode (2.20160316.1) unstable; urgency=critical
 
   * Upstream release 20160316 built from linux-firmware:
@@ -22,6 +50,7 @@ amd64-microcode (2.20160316.1) unstable; urgency=critical
     ring 0 code injection attack.
   * The erratum is timing-dependant, easily triggered by workloads that cause
     a high number of NMIs, such as running the "perf" tool.
+  * debian/control: enable buiding on x32 (closes: #777233)
 
  -- Henrique de Moraes Holschuh <hmh@debian.org>  Sat, 19 Mar 2016 14:02:44 -0300
 
