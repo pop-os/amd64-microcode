@@ -100,11 +100,17 @@ mkdir -p "${EFWCD}" && \
 
 [ -d "${EFWD}" ] && rm -fr "${EFWD}"
 
-# force-load microcode module to get proper logging only on kernel < 4.4
+# attempt to load microcode module to get proper logging.
 # microcode support cannot be made modular since Linux 4.4
 
 if dpkg --compare-versions "${version}" lt 4.4 ; then
-    force_load microcode
+    manual_add_modules microcode && {
+        # force_load has broken semanthics when the .ko file is missing
+        find "${DESTDIR}/${MODULESDIR}" -type f -print | grep -qc '/microcode\.ko$' && {
+          verbose "modular microcode driver detected"
+          force_load microcode
+        }
+    }
 fi
 
 :
