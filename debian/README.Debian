@@ -27,20 +27,74 @@ updates is in place, the processor in many systems will be running with
 outdated microcode, increasing the chances of incorrect system operation.
 
 Debian can apply microcode updates to the system processors during the
-operating system boot.  The following configurations are supported for
-the microcode driver:
+operating system boot automatically.  This requires the use of a suitably
+configured Linux kernel 3.14 or later, and an initramfs.
 
-1. When an initramfs image is used (Debian default), both modular and
-   built-in configs for the microcode driver will work, and microcode
-   will be updated by the initramfs.  You must run "update-initramfs -u"
-   when new microcode is manually installed to /lib/firmware (this will
-   be done automatically when new microcode is installed by a package
-   upgrade).
 
-2. When an initramfs image is not used, only the modular microcode
-   driver is supported.  If it doesn't autoload by itself in your kernel
-   version, you should add it to /etc/modules.  You must install either
-   the kmod or module-init-tools package, and the root filesystem with
-   /lib/firmware must be available when the modules are loaded.
+Installing microcode updates:
 
- -- Henrique de Moraes Holschuh <hmh@debian.org>, 2012-07-09
+For the Debian default kernel, it is enough to install the amd64-microcode
+package as well as the initramfs-tools package and the microcode update
+will be applied automatically at the next reboot.
+
+It is also possible to use "dracut" instead of initramfs-tools, but the
+support for early microcode updates must be enabled manually in
+dracut.conf (set the option "early_microcode=yes").  Force an update of
+the initramfs using dracut, and reboot.  Note that since Linux kernel 4.4,
+one must use dracut 044 or later.
+
+Applying the microcode updates without the use of an early initramfs is
+not automatically supported anymore, due to future safety concerns.
+However, the local administrator may trigger an immediate microcode update
+attempt at any time, at her own risk:
+
+  USING AN INITRAMFS+REBOOT IS SAFER.  DO THIS ONLY WHEN YOU KNOW BETTER:
+  as root:
+  echo 1 > /sys/devices/system/cpu/microcode/reload
+
+
+RECOVERY PROCEDURE:
+
+It is possible for a microcode update to not work well, or to not work at
+all on specific system models.  This is very rare when using the safe
+microcode update procedure described above and an up-to-date Linux kernel,
+but it has happened at least once.
+
+Should you experience problems because of the microcode update, you will
+have to bypass the microcode update process that happens during operating
+system startup (boot), and remove the amd64-microcode package until the
+underlying issue is fixed.
+
+To bypass the microcode update during system startup, you must instruct the
+boot loader (grub, lilo, etc) to pass the "dis_ucode_ldr" parameter
+(without the quotes) to the kernel.
+
+If your system uses grub (the default bootloader in Debian):
+
+  1. Access the grub menu during boot (press and hold the left "Shift"
+     key right after starting the system up if you don't see a grub menu
+     during boot);
+
+  2. Move the highlight/cursor to the kernel/boot option you want to
+     use, and press the "e" key to edit it;
+
+  3. Locate the line that starts with "linux" using the cursor
+     keys.  You must add the word "dis_ucode_ldr" (without the quotes) to
+     the end of that line;
+
+  4. Press "Ctrl+X" to start (boot) the system.  The microcode updates
+     will be skipped.
+
+After the system is running, remove or purge the amd64-microcode package.
+
+If removing/purging the package doesn't do it automatically for some
+reason, refresh the initramfs using the "update-initramfs -u" command (as
+the root user), and possibly "update-initramfs -u -k <kernel version>".
+
+"dracut" users, please refer to the dracut documentation on how to update
+the initramfs images for every installed kernel.
+
+Please report any issues caused by microcode updates to the mailing-list or
+to the Debian bug tracker.
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>, 2016-04-05

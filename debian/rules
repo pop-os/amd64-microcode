@@ -34,9 +34,6 @@ install:
 	mkdir -p "$(PKGDIR)/usr/share/initramfs-tools/hooks"
 	install -m 755 "$(DEBDIR)/initramfs.hook" \
 		"$(PKGDIR)/usr/share/initramfs-tools/hooks/$(INITRAMFS_NAME)"
-	mkdir -p "$(PKGDIR)/usr/share/initramfs-tools/scripts/init-premount"
-	install -m 755 "$(DEBDIR)/initramfs.init-premount" \
-		"$(PKGDIR)/usr/share/initramfs-tools/scripts/init-premount/$(INITRAMFS_NAME)"
 
 	# We have a /etc/default file, but no initscript
 	install -m 644 "$(DEBDIR)/default" "$(PKGDIR)/etc/default/$(PACKAGE)"
