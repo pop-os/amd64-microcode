@@ -36,10 +36,10 @@ install:
 		"$(PKGDIR)/usr/share/initramfs-tools/hooks/$(INITRAMFS_NAME)"
 
 	# We have a /etc/default file, but no initscript
-	install -m 644 "$(DEBDIR)/default" "$(PKGDIR)/etc/default/$(PACKAGE)"
+	install -m 644 "$(DEBDIR)/$(PACKAGE).default" "$(PKGDIR)/etc/default/$(PACKAGE)"
 
 	# modprobe.d blacklist
-	install -m 644 "$(DEBDIR)/modprobe-blacklist" "$(PKGDIR)/etc/modprobe.d/$(PACKAGE)-blacklist.conf"
+	install -m 644 "$(DEBDIR)/$(PACKAGE).modprobe-blacklist" "$(PKGDIR)/etc/modprobe.d/$(PACKAGE)-blacklist.conf"
 
 binary: install
 	dh_testdir
