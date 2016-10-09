@@ -8,9 +8,10 @@ amd64-microcode (2.20141028.1) unstable; urgency=medium
     issues caused by the AMD microcode update itself when done outside of
     the boot process.
 
-    However, updating only on boot works around a very elusive issue in the
-    the Linux kernel microcode update driver for AMD processors, which may
-    or may not have been fixed in the latest stable/long-term kernels.
+    However, updating only on boot works around a very elusive issue in
+    the Linux kernel microcode update driver for AMD processors, which
+    may or may not have been fixed in the latest stable/long-term
+    kernels.
 
     It is now possible to configure how the amd64-microcode package should
     behave through the /etc/default/amd64-microcode file.  By default, it
