@@ -3,15 +3,15 @@ Section: non-free/admin
 Priority: standard
 Maintainer: Henrique de Moraes Holschuh <hmh@debian.org>
 Uploaders: Giacomo Catenazzi <cate@debian.org>
-Build-Depends: debhelper (>= 7)
-Standards-Version: 3.9.6
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.8
 Vcs-Git: git://git.debian.org/users/hmh/amd64-microcode.git
 Vcs-Browser: http://git.debian.org/?p=users/hmh/amd64-microcode.git
 XS-Autobuild: yes
 
 Package: amd64-microcode
 Architecture: i386 amd64 x32
-Recommends: initramfs-tools (>= 0.113~) | dracut (>= 044)
+Recommends: initramfs-tools (>= 0.113~) | dracut (>= 044) | tiny-initramfs
 Depends: ${misc:Depends}
 Breaks: intel-microcode (<< 2)
 Description: Processor microcode firmware for AMD CPUs
