@@ -11,7 +11,7 @@ XS-Autobuild: yes
 
 Package: amd64-microcode
 Architecture: i386 amd64 x32
-Recommends: initramfs-tools (>= 0.113~) | dracut (>= 044)
+Recommends: initramfs-tools (>= 0.113~) | dracut (>= 044) | tiny-initramfs
 Depends: ${misc:Depends}
 Breaks: intel-microcode (<< 2)
 Description: Processor microcode firmware for AMD CPUs
