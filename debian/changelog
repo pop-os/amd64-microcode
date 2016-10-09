@@ -1,3 +1,16 @@
+amd64-microcode (3.20160316.2) unstable; urgency=medium
+
+  * NEWS.debian: fix minor typo
+  * debian/control, debian/compat: bump debhelper compat mode to 9
+  * debian/control: bump standards version to 3.9.8 (no changes needed)
+  * debian/: prefix binary-package control files with package name
+  * debian/control: recommend tiny-initramfs as an alternative to
+    initramfs-tools tiny-initramfs specifically supports early microcode
+    updates, so it is a viable alternative to initramfs-tools
+    (closes: #839882)
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Sun, 09 Oct 2016 15:43:16 -0300
+
 amd64-microcode (3.20160316.1) unstable; urgency=low
 
   * Bump major version number to 3: early-initramfs support
