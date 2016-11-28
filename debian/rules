@@ -13,6 +13,9 @@ export DH_ALWAYS_EXCLUDE=CVS:.svn:.git
 # Work around Debian bug #688794
 INITRAMFS_NAME := $(subst -,_,$(subst +,_,$(subst .,_,$(PACKAGE))))
 
+# For reproducible builds...
+CHANGELOG_TS :=$(shell date -u +%s --date=$(shell dpkg-parsechangelog | sed -n -e "/^Version:/ {s/.*\.\([0-9]\{8\}\)\..*/\1/;p}"))
+
 build-indep:
 
 build-arch:
@@ -32,8 +35,10 @@ install:
 	dh_install
 
 	mkdir -p "$(PKGDIR)/usr/share/initramfs-tools/hooks"
-	install -m 755 "$(DEBDIR)/initramfs.hook" \
-		"$(PKGDIR)/usr/share/initramfs-tools/hooks/$(INITRAMFS_NAME)"
+	sed -e "s/@CHANGELOG_TS@/$(CHANGELOG_TS)/g" \
+	    <"$(DEBDIR)/initramfs.hook" \
+	    >"$(PKGDIR)/usr/share/initramfs-tools/hooks/$(INITRAMFS_NAME)"
+	chmod 755 "$(PKGDIR)/usr/share/initramfs-tools/hooks/$(INITRAMFS_NAME)"
 
 	# We have a /etc/default file, but no initscript
 	install -m 644 "$(DEBDIR)/$(PACKAGE).default" "$(PKGDIR)/etc/default/$(PACKAGE)"

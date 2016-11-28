@@ -73,6 +73,9 @@ fi
 
 verbose "installing AMD64 microcode into the early initramfs..."
 
+# set during package build to the date from the package *version*
+CHANGELOG_TS=@CHANGELOG_TS@
+
 EFWD=$(mktemp -d "${TMPDIR:-/var/tmp}/mkinitramfs-EFW_XXXXXXXXXX") || {
     echo "E: amd64-microcode: cannot create temporary directory" >&2
     exit 1
@@ -88,11 +91,19 @@ EFWE="${EFWD}/early-initramfs.cpio"
 EFWCD="${EFWD}/d/kernel/x86/microcode"
 EFWF="${EFWCD}/AuthenticAMD.bin"
 
+# note: to build a reproducible early initramfs, we force
+# the microcode component ordering inside the microcode
+# firmware file, as well as the timestamp and ordering of
+# all cpio members.
 mkdir -p "${EFWCD}" && \
- find "${AUCODE_FW_DIR}/." -maxdepth 1 -type f -print0 | xargs -0 -r cat 2>/dev/null >"${EFWF}" && \
- test -s "${EFWF}" && \
- ( cd "${EFWD}/d" ; find . -print0 | sort -z | cpio --null -R 0:0 -H newc -o --quiet > "${EFWE}" ) \
+ find "${AUCODE_FW_DIR}/." -maxdepth 1 -type f -print0 | LC_ALL=C sort -z | xargs -0 -r cat 2>/dev/null >"${EFWF}" && \
+ find "${EFWD}" -print0 | xargs -0r touch --no-dereference --date="@${CHANGELOG_TS}" && { \
+    # --reproducible requires cpio >= 2.12
+    cpio --usage | grep -qs -- "--reproducible" && cpio_reproducible="--reproducible" || true
+ } && test -s "${EFWF}" && \
+ ( cd "${EFWD}/d" ; find . -print0 | LC_ALL=C sort -z | cpio --null $cpio_reproducible -R 0:0 -H newc -o --quiet > "${EFWE}" ) \
 && prepend_earlyinitramfs "${EFWE}" || {
+    # something failed somewhere in that pipeline
     [ -d "${EFWD}" ] && rm -fr "${EFWD}"
     echo "E: amd64-microcode: failed to create or prepend the early initramfs to the initramfs" >&2
     exit 0
