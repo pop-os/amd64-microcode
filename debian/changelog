@@ -1,3 +1,10 @@
+amd64-microcode (3.20160316.3) unstable; urgency=medium
+
+  * initramfs: Make the early initramfs reproducible (closes: #845194)
+  * rules: switch to simplified dh-based build (debhelper v9)
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Tue, 29 Nov 2016 23:54:53 -0200
+
 amd64-microcode (3.20160316.2) unstable; urgency=medium
 
   * NEWS.debian: fix minor typo
