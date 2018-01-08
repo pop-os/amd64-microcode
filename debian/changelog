@@ -1,3 +1,19 @@
+amd64-microcode (3.20171205.1) unstable; urgency=high
+
+  * New microcode updates (closes: #886382):
+    sig 0x00800f12, patch id 0x08001213, 2017-12-05
+    Thanks to SuSE for distributing these ahead of AMD's official release!
+  * Add IBPB support for family 17h AMD processors (CVE-2017-5715)
+  * README: describe source for faml17h microcode update
+  * Upload to unstable to match IBPB microcode support on Intel in Debian
+    unstable.
+  * WARNING: requires at least kernel 4.15, 4.14.13, 4.9.76, 4.4.111 (or a
+    backport of commit f4e9b7af0cd58dd039a0fb2cd67d57cea4889abf
+    "x86/microcode/AMD: Add support for fam17h microcode loading") otherwise
+    it will not be applied to the processor.
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Mon, 08 Jan 2018 12:19:57 -0200
+
 amd64-microcode (3.20160316.3) unstable; urgency=medium
 
   * initramfs: Make the early initramfs reproducible (closes: #845194)
