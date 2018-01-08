@@ -39,6 +39,11 @@ amd-ucode/microcode_amd_fam16h.bin     |binary
 amd-ucode/microcode_amd_fam16h.bin.asc |   11 +++++++++++
 6 files changed, 23 insertions(+), 10 deletions(-)
 
+The microcode update for family 17h came from SuSE, and depends on specific
+kernel support for family 17h to be applied.  It implements IBPB support
+for family 17h processors (Zen).  Microcode update support for family 17h
+should be present in Linux 4.15, 4.14.13, 4.9.76, 4.4.111, and later.
+
 AMD did not update the relevant microcode documentation (errata fixed,
 microcode patch levels, etc), so there is no documentation for the family 0x16
 microcode patches, and the documentation for family 0x15 might be stale.
