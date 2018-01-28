@@ -5,8 +5,8 @@ Maintainer: Henrique de Moraes Holschuh <hmh@debian.org>
 Uploaders: Giacomo Catenazzi <cate@debian.org>
 Build-Depends: debhelper (>= 9)
 Standards-Version: 3.9.8
-Vcs-Git: git://git.debian.org/users/hmh/amd64-microcode.git
-Vcs-Browser: http://git.debian.org/?p=users/hmh/amd64-microcode.git
+Vcs-Git: https://salsa.debian.org/hmh/amd64-microcode.git
+Vcs-Browser: https://salsa.debian.org/hmh/amd64-microcode
 XS-Autobuild: yes
 
 Package: amd64-microcode
