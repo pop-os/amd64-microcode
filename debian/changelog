@@ -1,3 +1,9 @@
+amd64-microcode (3.20171205.2) unstable; urgency=medium
+
+  * debian/control: update Vcs-* fields for salsa.debian.org
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Fri, 04 May 2018 07:51:40 -0300
+
 amd64-microcode (3.20171205.1) unstable; urgency=high
 
   * New microcode updates (closes: #886382):
