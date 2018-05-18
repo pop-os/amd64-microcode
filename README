@@ -1,6 +1,23 @@
 This amd64-microcode release was based on the linux-firmware tree.
 
 From: Sherry Hurwitz <sherry.hurwitz@amd.com>
+Subject: [PATCH 1/1] linux-firmware: Update AMD cpu microcode
+Date:   Wed May 16 18:10:48 2018 -0500
+
+    linux-firmware: Update AMD cpu microcode
+
+    * Add AMD cpu microcode for processor family 17h
+    * Update AMD cpu microcode for processor family 15h
+    * Update the AMD cpu microcode license copyright
+    * Add a Version for both microcode family 15h and 17h
+
+    Key Name        = AMD Microcode Signing Key (for signing microcode container files only)
+    Key ID          = F328AE73
+    Key Fingerprint = FC7C 6C50 5DAF CC14 7183 57CA E4BE 5339 F328 AE73
+
+    Signed-off-by: Sherry Hurwitz <sherry.hurwitz@amd.com>
+
+From: Sherry Hurwitz <sherry.hurwitz@amd.com>
 Subject: [PATCH 1/1] linux-firmware: Update AMD microcode patch firmware
 Date: 2016-03-17 06:56:11 GMT
 
