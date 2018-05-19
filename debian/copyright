@@ -2,8 +2,9 @@ This package was debianized by Henrique de Moraes Holschuh <hmh@debian.org> on
 Sun Jun 10 10:54:36 BRT 2012
 
 It was downloaded from http://www.amd64.org/support/microcode.html up to
-version 20120910 (now: http://www.amd64.org/microcode.html).  It was built from
-the linux-firmware git tree at  for version 20131007 onwards.
+version 20120910 (now: http://www.amd64.org/microcode.html).  For version
+20131007 onwards, it was built from the linux-firmware git repository at:
+https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/
 
 Debian only distributes the AMD64 microcode file in its unaltered form.
 
@@ -13,7 +14,7 @@ Upstream Author:
 
 Upstream Copyright: 
 
-    Copyright (C) 2010-2014 Advanced Micro Devices, Inc.,
+    Copyright (C) 2010-2018 Advanced Micro Devices, Inc.
     All rights reserved.
 
 Upstream License:
