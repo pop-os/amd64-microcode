@@ -1,3 +1,16 @@
+amd64-microcode (3.20180524.1) unstable; urgency=high
+
+  * New microcode update packages from AMD upstream:
+    + Re-added Microcodes:
+      sig 0x00610f01, patch id 0x06001119, 2012-07-13
+  * This update avoids regressing sig 0x610f01 processors on systems with
+    outdated firmware by adding back exactly the same microcode patch that was
+    present before [for these processors].  It does not implement Spectre-v2
+    mitigation for these processors.
+  * README: update for new release
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Fri, 25 May 2018 15:38:22 -0300
+
 amd64-microcode (3.20180515.1) unstable; urgency=high
 
   * New microcode update packages from AMD upstream:
