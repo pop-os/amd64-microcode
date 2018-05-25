@@ -1,6 +1,23 @@
 This amd64-microcode release was based on the linux-firmware tree.
 The linux-firmware tree can be found in kernel.org.
 
+commit 7518922bd5b98b137af7aaf3c836f5a498e91609
+Author: Sherry Hurwitz <sherry.hurwitz@amd.com>
+Date:   Thu May 24 20:57:59 2018 -0500
+
+    Update AMD cpu microcode for family 15h
+    
+    * Processor Revision ID 0x00610f01 was accidently not included in the previous
+      submitted microcode container file.
+    * Update the Version for family 15h microcode .bin file
+    
+    Key Name        = AMD Microcode Signing Key (for signing microcode container files only)
+    Key ID          = F328AE73
+    Key Fingerprint = FC7C 6C50 5DAF CC14 7183 57CA E4BE 5339 F328 AE73
+    
+    Signed-off-by: Sherry Hurwitz <sherry.hurwitz@amd.com>
+    Signed-off-by: Josh Boyer <jwboyer@kernel.org>
+
 commit 77101513943ef198e2050667c87abf19e6cbb1d8
 Author: Sherry Hurwitz <sherry.hurwitz@amd.com>
 Date:   Wed May 16 18:10:48 2018 -0500
