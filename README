@@ -1,6 +1,23 @@
 This amd64-microcode release was based on the linux-firmware tree.
 The linux-firmware tree can be found in kernel.org.
 
+commit 8aa9e3e3886d49b8e1427c1084cbbe567ca2b6ca
+Author:     Allen, John <John.Allen@amd.com>
+AuthorDate: Thu Nov 29 18:39:16 2018 +0000
+Commit:     Josh Boyer <jwboyer@kernel.org>
+CommitDate: Fri Dec 14 08:05:34 2018 -0500
+
+    linux-firmware: Update AMD cpu microcode
+    
+    * Update AMD cpu microcode for processor family 17h
+    
+    Key Name        = AMD Microcode Signing Key (for signing microcode container files only)
+    Key ID          = F328AE73
+    Key Fingerprint = FC7C 6C50 5DAF CC14 7183 57CA E4BE 5339 F328 AE73
+    
+    Signed-off-by: John Allen <john.allen@amd.com>
+    Signed-off-by: Josh Boyer <jwboyer@kernel.org>
+
 commit 7518922bd5b98b137af7aaf3c836f5a498e91609
 Author: Sherry Hurwitz <sherry.hurwitz@amd.com>
 Date:   Thu May 24 20:57:59 2018 -0500
