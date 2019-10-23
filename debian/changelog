@@ -1,3 +1,15 @@
+amd64-microcode (3.20191021.1) unstable; urgency=medium
+
+  * New microcode update packages from AMD upstream:
+    + New Microcodes:
+      sig 0x00830f10, patch id 0x08301025, 2019-07-11
+    + Updated Microcodes:
+      sig 0x00800f12, patch id 0x08001250, 2019-04-16
+      sig 0x00800f82, patch id 0x0800820d, 2019-04-16
+  * README: update for new release
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Tue, 22 Oct 2019 21:00:17 -0300
+
 amd64-microcode (3.20181128.1) unstable; urgency=medium
 
   * New microcode update packages from AMD upstream:
