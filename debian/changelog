@@ -1,3 +1,12 @@
+amd64-microcode (3.20191218.1) unstable; urgency=medium
+
+  * New microcode update packages from AMD upstream:
+    + Removed Microcode updates (known to cause issues):
+      sig 0x00830f10, patch id 0x08301025, 2019-07-11
+  * README: update for new release
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Fri, 20 Dec 2019 18:36:27 -0300
+
 amd64-microcode (3.20191021.1) unstable; urgency=medium
 
   * New microcode update packages from AMD upstream:
