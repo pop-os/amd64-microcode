@@ -1,1 +1,2 @@
 amd-ucode/*bin	lib/firmware/amd-ucode
+amd/*sev*bin	lib/firmware/amd

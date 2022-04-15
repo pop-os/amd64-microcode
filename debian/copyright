@@ -12,9 +12,14 @@ Upstream Author:
 
     Advanced Micro Devices, Inc.
 
-Upstream Copyright: 
+Upstream Copyright (AMD-UCODE):
 
     Copyright (C) 2010-2018 Advanced Micro Devices, Inc.
+    All rights reserved.
+
+Upstream Copyright (AMD_SEV):
+
+    Copyright (C) 2015-2019 Advanced Micro Devices, Inc.
     All rights reserved.
 
 Upstream License:

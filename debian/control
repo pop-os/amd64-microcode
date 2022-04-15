@@ -18,6 +18,7 @@ Description: Processor microcode firmware for AMD CPUs
  This package contains microcode patches for all AMD AMD64
  processors.  AMD releases microcode patches to correct
  processor behavior as documented in the respective processor
- revision guides.
+ revision guides.  This package includes both AMD CPU microcode
+ patches and AMD SEV firmware updates.
  .
  For Intel processors, please refer to the intel-microcode package.
