@@ -1,3 +1,27 @@
+amd64-microcode (3.20220411.1) unstable; urgency=medium
+
+  * Update package data from linux-firmware 20220411:
+    * New microcode updates from AMD upstream (20220408)
+      (closes: #1006444, #1009333)
+      + New Microcode patches:
+        sig 0x00830f10, patch id 0x08301055, 2022-02-15
+        sig 0x00a00f10, patch id 0x0a001058, 2022-02-10
+        sig 0x00a00f11, patch id 0x0a001173, 2022-01-31
+        sig 0x00a00f12, patch id 0x0a001229, 2022-02-10
+      + Updated Microcode patches:
+        sig 0x00800f12, patch id 0x0800126e, 2021/11/11
+    * New AMD-SEV firmware from AMD upstream (20220308)
+      Fixes: CVE-2019-9836 (closes: #970395)
+      + New SEV firmware:
+        Family 17h models 00h-0fh: version 0.17 build 48
+        Family 17h models 30h-3fh: version 0.24 build 15
+        Family 19h models 00h-0fh: version 1.51 build 3
+  * README: update for new release
+  * debian: ship AMD-SEV firmware.
+    Upstream license is the same license used for amd-ucode
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Fri, 15 Apr 2022 18:27:36 -0300
+
 amd64-microcode (3.20191218.1) unstable; urgency=medium
 
   * New microcode update packages from AMD upstream:
