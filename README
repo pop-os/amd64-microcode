@@ -1,142 +1,41 @@
 This amd64-microcode release was based on the linux-firmware tree.
 The linux-firmware tree can be found in kernel.org.
 
-commit c4586ffaac0ca0d7045e06140b6426f2e79e96e6
+It includes AMD-SEV firmware and AMD-UCODE firmware.  The package
+version is now based on the linux-firmware release tag that included
+the newest of either amd-ucode or amd-sev.
+
+commit 31ec35bf14df835e2f9f7c8b1a8516a34f836df5
 Author: John Allen <john.allen@amd.com>
-Date:   Wed Dec 18 08:27:40 2019 -0600
+Date:   Fri Apr 8 19:55:39 2022 +0000
 
-    linux-firmware: Update AMD cpu microcode
-    
-    * Update AMD cpu microcode for processor family 17h
-    
-    Key Name        = AMD Microcode Signing Key (for signing microcode container files only)
-    Key ID          = F328AE73
-    Key Fingerprint = FC7C 6C50 5DAF CC14 7183 57CA E4BE 5339 F328 AE73
-    
-    Signed-off-by: John Allen <john.allen@amd.com>
-    Signed-off-by: Josh Boyer <jwboyer@kernel.org>
+linux-firmware: Update AMD cpu microcode
 
-commit 2b016afc348ba4b5fb2016ffcb2822f4a293da0c
-Author: Allen, John <John.Allen@amd.com>
-Date:   Mon Oct 21 12:54:40 2019 +0000
+* Update AMD cpu microcode for processor family 17h
+* Update AMD cpu microcode for processor family 19h
 
-    linux-firmware: Update AMD cpu microcode
-    
-    * Update AMD cpu microcode for processor family 17h
-    
-    Key Name        = AMD Microcode Signing Key (for signing microcode container files only)
-    Key ID          = F328AE73
-    Key Fingerprint = FC7C 6C50 5DAF CC14 7183 57CA E4BE 5339 F328 AE73
-    
-    Signed-off-by: John Allen <john.allen@amd.com>
-    Signed-off-by: Josh Boyer <jwboyer@kernel.org>
+Key Name        = AMD Microcode Signing Key (for signing microcode container files only)
+Key ID          = F328AE73
+Key Fingerprint = FC7C 6C50 5DAF CC14 7183 57CA E4BE 5339 F328 AE73
 
-commit 8aa9e3e3886d49b8e1427c1084cbbe567ca2b6ca
-Author:     Allen, John <John.Allen@amd.com>
-AuthorDate: Thu Nov 29 18:39:16 2018 +0000
-Commit:     Josh Boyer <jwboyer@kernel.org>
-CommitDate: Fri Dec 14 08:05:34 2018 -0500
+Signed-off-by: John Allen <john.allen@amd.com>
+Signed-off-by: Josh Boyer <jwboyer@kernel.org>
 
-    linux-firmware: Update AMD cpu microcode
-    
-    * Update AMD cpu microcode for processor family 17h
-    
-    Key Name        = AMD Microcode Signing Key (for signing microcode container files only)
-    Key ID          = F328AE73
-    Key Fingerprint = FC7C 6C50 5DAF CC14 7183 57CA E4BE 5339 F328 AE73
-    
-    Signed-off-by: John Allen <john.allen@amd.com>
-    Signed-off-by: Josh Boyer <jwboyer@kernel.org>
+commit 21a405e4623d91c673028f67404541afdcfbd056
+Author: John Allen <john.allen@amd.com>
+Date:   Fri Feb 25 18:46:35 2022 +0000
 
-commit 7518922bd5b98b137af7aaf3c836f5a498e91609
-Author: Sherry Hurwitz <sherry.hurwitz@amd.com>
-Date:   Thu May 24 20:57:59 2018 -0500
+linux-firmware: Update AMD SEV firmware
 
-    Update AMD cpu microcode for family 15h
-    
-    * Processor Revision ID 0x00610f01 was accidently not included in the previous
-      submitted microcode container file.
-    * Update the Version for family 15h microcode .bin file
-    
-    Key Name        = AMD Microcode Signing Key (for signing microcode container files only)
-    Key ID          = F328AE73
-    Key Fingerprint = FC7C 6C50 5DAF CC14 7183 57CA E4BE 5339 F328 AE73
-    
-    Signed-off-by: Sherry Hurwitz <sherry.hurwitz@amd.com>
-    Signed-off-by: Josh Boyer <jwboyer@kernel.org>
+Update AMD SEV firmware to version 0.17 build 48 for AMD family 17h
+processors with models in the range 00h to 0fh.
 
-commit 77101513943ef198e2050667c87abf19e6cbb1d8
-Author: Sherry Hurwitz <sherry.hurwitz@amd.com>
-Date:   Wed May 16 18:10:48 2018 -0500
+Update AMD SEV firmware to version 0.24 build 15 for AMD family 17h
+processors with models in the range 30h to 3fh.
 
-    linux-firmware: Update AMD cpu microcode
-    
-    * Add AMD cpu microcode for processor family 17h
-    * Update AMD cpu microcode for processor family 15h
-    * Update the AMD cpu microcode license copyright
-    * Add a Version for both microcode family 15h and 17h
-    
-    Key Name        = AMD Microcode Signing Key (for signing microcode container files only)
-    Key ID          = F328AE73
-    Key Fingerprint = FC7C 6C50 5DAF CC14 7183 57CA E4BE 5339 F328 AE73
-    
-    Signed-off-by: Sherry Hurwitz <sherry.hurwitz@amd.com>
-    Signed-off-by: Josh Boyer <jwboyer@kernel.org>
+Update AMD SEV firmware to version 1.51 build 3 for AMD family 19h
+processors with models in the range 00h to 0fh.
 
-commit 5f8ca0c1db6106a2d6d7e85eee778917ff03c3de
-Author: Sherry Hurwitz <sherry.hurwitz@amd.com>
-Date:   Thu Mar 17 01:56:11 2016 -0500
+Signed-off-by: John Allen <john.allen@amd.com>
+Signed-off-by: Josh Boyer <jwboyer@kernel.org>
 
-    linux-firmware: Update AMD microcode patch firmware
-    
-    For AMD Family 15h Processors to fix bugs in prior microcode patch
-    file: amd-ucode/microcode_amd_fam15h.bin
-    md5sum: 2384ef1d8ec8ca3930b62d82ea5a3813
-    
-    Version: 2016_03_16
-    
-    Signed-off-by: Sherry Hurwitz <sherry.hurwitz@amd.com>
-    Signed-off-by: Kyle McMartin <kyle@kernel.org>
-
-commit 8ac569dd3ca3ca685bd47ee86c1eeb6050864db3
-Author: Sherry Hurwitz <sherry.hurwitz@amd.com>
-Date:   Thu Nov 6 19:38:26 2014 -0600
-
-    linux-firmware: Update AMD microcode patch firmware files
-    
-    For AMD Family 15h Processors
-    file:   amd-ucode/microcode_amd_family15h.bin
-    md5sum: ee3f0f46936aa1788dc31ca3487e0ff3
-    
-    For AMD Family 16h Processors
-    file:   amd-ucode/microcode_amd_family16h.bin
-    md5sum: 6a47a6393c52ddfc0b5b044efc076a77
-    
-    Version: 2014_10_28
-    Signed-off-by: Sherry Hurwitz <sherry.hurwitz@amd.com>
-    Signed-off-by: Kyle McMartin <kyle@kernel.org>
-
-commit 31f6b3076bab3c4b65f67fdb232f4579ed828b4f
-Author: Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>
-Date:   Wed Jul 10 19:42:56 2013 -0500
-
-    linux-firmware: Add AMD microcode patch firmware files
-    
-    For AMD Families 10h ~ 14h Processors
-    file:   amd-ucode/microcode_amd.bin
-    md5sum: 55ae79b82cbfddcf7142058be3c9ec2d
-    
-    For AMD Family 15h Processors
-    file:   amd-ucode/microcode_amd_fam15h.bin
-    md5sum: 122ac7e56442c2b7c28eb26978b2d57c
-    
-    Version: 07_10_2013
-    
-    Signed-off-by: Sherry Hurwitz <sherry.hurwitz@amd.com>
-    Signed-off-by: Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>
-    [bwh: Include version in WHENCE and GPG signatures as separate files]
-    Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
-
-AMD did not update the relevant microcode documentation (errata fixed,
-microcode patch levels, etc), so there is no documentation for the family 0x16
-microcode patches, and the documentation for family 0x15 might be stale.
