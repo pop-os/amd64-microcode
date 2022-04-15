@@ -1,2 +1,2 @@
-microcode_amd.bin	/lib/firmware/amd-ucode
-microcode_amd_fam*.bin	/lib/firmware/amd-ucode
+amd-ucode/*bin	lib/firmware/amd-ucode
+amd/*sev*bin	lib/firmware/amd
