@@ -58,6 +58,23 @@ amd64-microcode (3.20220411.1) unstable; urgency=medium
 
  -- Henrique de Moraes Holschuh <hmh@debian.org>  Fri, 15 Apr 2022 18:27:36 -0300
 
+amd64-microcode (3.20191218.1ubuntu2) impish; urgency=medium
+
+  * No-change rebuild to build packages with zstd compression.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 07 Oct 2021 12:09:20 +0200
+
+amd64-microcode (3.20191218.1ubuntu1) focal; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    - initramfs-tools hook (debian/initramfs.hook):
+      + Default to 'early' instead of 'auto' when building with
+        MODULES=most
+      + Do not override preset defaults from auto-exported conf
+        snippets loaded by initramfs-tools.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Sat, 15 Feb 2020 23:43:50 -0800
+
 amd64-microcode (3.20191218.1) unstable; urgency=medium
 
   * New microcode update packages from AMD upstream:
@@ -66,6 +83,17 @@ amd64-microcode (3.20191218.1) unstable; urgency=medium
   * README: update for new release
 
  -- Henrique de Moraes Holschuh <hmh@debian.org>  Fri, 20 Dec 2019 18:36:27 -0300
+
+amd64-microcode (3.20191021.1ubuntu1) focal; urgency=low
+
+  * Merge from Debian unstable (LP: #1850752). Remaining changes:
+    - initramfs-tools hook (debian/initramfs.hook):
+      + Default to 'early' instead of 'auto' when building with
+        MODULES=most
+      + Do not override preset defaults from auto-exported conf
+        snippets loaded by initramfs-tools.
+
+ -- Steve Beattie <sbeattie@ubuntu.com>  Thu, 31 Oct 2019 09:41:22 -0700
 
 amd64-microcode (3.20191021.1) unstable; urgency=medium
 
@@ -79,6 +107,24 @@ amd64-microcode (3.20191021.1) unstable; urgency=medium
 
  -- Henrique de Moraes Holschuh <hmh@debian.org>  Tue, 22 Oct 2019 21:00:17 -0300
 
+amd64-microcode (3.20181128.1ubuntu2) eoan; urgency=medium
+
+  * Do not override preset defaults from auto-exported conf snippets
+    loaded by initramfs-tools. This thus allows other hooks, or
+    alternative confdir override the built-in defaults at mkinitramfs
+    time. Specifically to support generating installer/golden/bare-metal
+    initrds with all microcodes for any hardware.
+
+ -- Dimitri John Ledkov <xnox@ubuntu.com>  Wed, 31 Jul 2019 21:54:24 -0400
+
+amd64-microcode (3.20181128.1ubuntu1) disco; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    - Default to 'early' instead of 'auto' in the initramfs-tools hook
+      when building with MODULES=most
+
+ -- Julian Andres Klode <juliank@ubuntu.com>  Mon, 07 Jan 2019 08:32:48 +0100
+
 amd64-microcode (3.20181128.1) unstable; urgency=medium
 
   * New microcode update packages from AMD upstream:
@@ -87,6 +133,13 @@ amd64-microcode (3.20181128.1) unstable; urgency=medium
   * README: update for new release
 
  -- Henrique de Moraes Holschuh <hmh@debian.org>  Sat, 15 Dec 2018 18:42:12 -0200
+
+amd64-microcode (3.20180524.1ubuntu1) cosmic; urgency=medium
+
+  * Default to 'early' instead of 'auto' in the initramfs-tools hook
+    when building with MODULES=most (LP: #1778738)
+
+ -- Julian Andres Klode <juliank@ubuntu.com>  Tue, 26 Jun 2018 16:32:22 +0200
 
 amd64-microcode (3.20180524.1) unstable; urgency=high
 
@@ -375,3 +428,4 @@ amd64-microcode (0.20120117-1) unstable; urgency=medium
     to properly support AMD processors.  Closes: #676921.
 
  -- Henrique de Moraes Holschuh <hmh@debian.org>  Sun, 10 Jun 2012 12:22:01 -0300
+
