@@ -1,7 +1,8 @@
 Source: amd64-microcode
 Section: non-free-firmware/admin
 Priority: standard
-Maintainer: Henrique de Moraes Holschuh <hmh@debian.org>
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Henrique de Moraes Holschuh <hmh@debian.org>
 Uploaders: Giacomo Catenazzi <cate@debian.org>
 Build-Depends: debhelper (>= 9)
 Standards-Version: 3.9.8
@@ -13,7 +14,8 @@ Package: amd64-microcode
 Architecture: i386 amd64 x32
 Recommends: initramfs-tools (>= 0.113~) | dracut (>= 044) | tiny-initramfs
 Depends: ${misc:Depends}
-Breaks: intel-microcode (<< 2)
+Breaks: intel-microcode (<< 2), linux-firmware (<< 20220819.git8413c63c-0ubuntu1~)
+Replaces: linux-firmware (<< 20220819.git8413c63c-0ubuntu1~)
 Description: Processor microcode firmware for AMD CPUs
  This package contains microcode patches for all AMD AMD64
  processors.  AMD releases microcode patches to correct
