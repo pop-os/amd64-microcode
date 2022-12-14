@@ -1,3 +1,9 @@
+amd64-microcode (3.20220411.1pop1) kinetic; urgency=medium
+
+  * Upstream Rebase
+
+ -- Brock Szuszczewicz <brock@szu.email>  Tue, 13 Dec 2022 17:49:56 -0700
+
 amd64-microcode (3.20220411.1ubuntu3) kinetic; urgency=medium
 
   * Bump the Breaks/Replaces on linux-firmware to match the version which
