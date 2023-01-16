@@ -1,5 +1,5 @@
 Source: amd64-microcode
-Section: non-free/admin
+Section: non-free-firmware/admin
 Priority: standard
 Maintainer: Henrique de Moraes Holschuh <hmh@debian.org>
 Uploaders: Giacomo Catenazzi <cate@debian.org>
