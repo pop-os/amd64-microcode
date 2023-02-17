@@ -1,9 +1,9 @@
-amd64-microcode (3.20220411.2) UNRELEASED; urgency=medium
+amd64-microcode (3.20220411.2) unstable; urgency=medium
 
   * Move source and binary from non-free/admin to non-free-firmware/admin
     following the 2022 General Resolution about non-free firmware.
 
- -- Cyril Brulebois <kibi@debian.org>  Mon, 16 Jan 2023 23:04:51 +0000
+ -- Cyril Brulebois <kibi@debian.org>  Fri, 17 Feb 2023 01:19:05 +0100
 
 amd64-microcode (3.20220411.1) unstable; urgency=medium
 
