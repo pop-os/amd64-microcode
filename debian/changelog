@@ -1,3 +1,16 @@
+amd64-microcode (3.20230414.1) unstable; urgency=medium
+
+  * Update package data from linux-firmware 20230404-38-gfab14965:
+    (closes: #1031103)
+    * Updated Microcode patches:
+      + Family=0x17 Model=0x31 Stepping=0x00: Patch=0x08301072
+      + Family=0x19 Model=0x01 Stepping=0x00: Patch=0x0a001078
+      + Family=0x19 Model=0x01 Stepping=0x01: Patch=0x0a0011ce
+      + Family=0x19 Model=0x01 Stepping=0x02: Patch=0x0a001231
+  * README: update for new release
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Fri, 28 Apr 2023 17:24:39 -0300
+
 amd64-microcode (3.20220411.2) unstable; urgency=medium
 
   * Move source and binary from non-free/admin to non-free-firmware/admin
