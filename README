@@ -8,6 +8,36 @@ the newest of either amd-ucode or amd-sev.
 
 latest commits in this release:
 
+commit 69143e8eca62a80b9791b8d358d1cc4c90e373c9
+Author: John Allen <john.allen@amd.com>
+Date:   Fri Apr 14 16:13:58 2023 +0000
+
+    linux-firmware: Update AMD cpu microcode
+    
+    * Update AMD cpu microcode for processor family 17h
+    
+    Key Name        = AMD Microcode Signing Key (for signing microcode container files only)
+    Key ID          = F328AE73
+    Key Fingerprint = FC7C 6C50 5DAF CC14 7183 57CA E4BE 5339 F328 AE73
+    
+    Signed-off-by: John Allen <john.allen@amd.com>
+    Signed-off-by: Josh Boyer <jwboyer@kernel.org>
+
+commit f79e4ba7ed345c55b72faaaa94ff7430f4b9e1aa
+Author: John Allen <john.allen@amd.com>
+Date:   Tue Jan 31 20:13:41 2023 +0000
+
+    linux-firmware: Update AMD cpu microcode
+    
+    * Update AMD cpu microcode for processor family 19h
+    
+    Key Name        = AMD Microcode Signing Key (for signing microcode container files only)
+    Key ID          = F328AE73
+    Key Fingerprint = FC7C 6C50 5DAF CC14 7183 57CA E4BE 5339 F328 AE73
+    
+    Signed-off-by: John Allen <john.allen@amd.com>
+    Signed-off-by: Josh Boyer <jwboyer@kernel.org>
+
 commit fdf1a65258522edf18a0a1768fbafa61ed07e598
 Author: John Allen <john.allen@amd.com>
 Date:   Fri Sep 30 15:51:00 2022 +0000
