@@ -5,36 +5,97 @@ It includes AMD-SEV firmware and AMD-UCODE firmware.  The package
 version is now based on the linux-firmware release tag that included
 the newest of either amd-ucode or amd-sev.
 
+
+latest commits in this release:
+
+commit 69143e8eca62a80b9791b8d358d1cc4c90e373c9
+Author: John Allen <john.allen@amd.com>
+Date:   Fri Apr 14 16:13:58 2023 +0000
+
+    linux-firmware: Update AMD cpu microcode
+    
+    * Update AMD cpu microcode for processor family 17h
+    
+    Key Name        = AMD Microcode Signing Key (for signing microcode container files only)
+    Key ID          = F328AE73
+    Key Fingerprint = FC7C 6C50 5DAF CC14 7183 57CA E4BE 5339 F328 AE73
+    
+    Signed-off-by: John Allen <john.allen@amd.com>
+    Signed-off-by: Josh Boyer <jwboyer@kernel.org>
+
+commit f79e4ba7ed345c55b72faaaa94ff7430f4b9e1aa
+Author: John Allen <john.allen@amd.com>
+Date:   Tue Jan 31 20:13:41 2023 +0000
+
+    linux-firmware: Update AMD cpu microcode
+    
+    * Update AMD cpu microcode for processor family 19h
+    
+    Key Name        = AMD Microcode Signing Key (for signing microcode container files only)
+    Key ID          = F328AE73
+    Key Fingerprint = FC7C 6C50 5DAF CC14 7183 57CA E4BE 5339 F328 AE73
+    
+    Signed-off-by: John Allen <john.allen@amd.com>
+    Signed-off-by: Josh Boyer <jwboyer@kernel.org>
+
+commit fdf1a65258522edf18a0a1768fbafa61ed07e598
+Author: John Allen <john.allen@amd.com>
+Date:   Fri Sep 30 15:51:00 2022 +0000
+
+    linux-firmware: Update AMD cpu microcode
+    
+    * Update AMD cpu microcode for processor family 19h
+    
+    Key Name        = AMD Microcode Signing Key (for signing microcode container files only)
+    Key ID          = F328AE73
+    Key Fingerprint = FC7C 6C50 5DAF CC14 7183 57CA E4BE 5339 F328 AE73
+    
+    Signed-off-by: John Allen <john.allen@amd.com>
+    Signed-off-by: Josh Boyer <jwboyer@kernel.org>
+
+commit 89ec6198f13d1007563ff87aae5de209e993be07
+Author: John Allen <john.allen@amd.com>
+Date:   Tue Aug 9 20:29:50 2022 +0000
+
+    Add amd-ucode README file
+    
+    Create new README file describing the microcode patch levels included in the
+    microcode container files in the amd-ucode directory.
+    
+    Signed-off-by: John Allen <john.allen@amd.com>
+    [WHENCE entry added by Josh Boyer <jwboyer@kernel.org>
+    Signed-off-by: Josh Boyer <jwboyer@kernel.org>
+
 commit 31ec35bf14df835e2f9f7c8b1a8516a34f836df5
 Author: John Allen <john.allen@amd.com>
 Date:   Fri Apr 8 19:55:39 2022 +0000
 
-linux-firmware: Update AMD cpu microcode
+    linux-firmware: Update AMD cpu microcode
 
-* Update AMD cpu microcode for processor family 17h
-* Update AMD cpu microcode for processor family 19h
+    * Update AMD cpu microcode for processor family 17h
+    * Update AMD cpu microcode for processor family 19h
 
-Key Name        = AMD Microcode Signing Key (for signing microcode container files only)
-Key ID          = F328AE73
-Key Fingerprint = FC7C 6C50 5DAF CC14 7183 57CA E4BE 5339 F328 AE73
+    Key Name        = AMD Microcode Signing Key (for signing microcode container files only)
+    Key ID          = F328AE73
+    Key Fingerprint = FC7C 6C50 5DAF CC14 7183 57CA E4BE 5339 F328 AE73
 
-Signed-off-by: John Allen <john.allen@amd.com>
-Signed-off-by: Josh Boyer <jwboyer@kernel.org>
+    Signed-off-by: John Allen <john.allen@amd.com>
+    Signed-off-by: Josh Boyer <jwboyer@kernel.org>
 
 commit 21a405e4623d91c673028f67404541afdcfbd056
 Author: John Allen <john.allen@amd.com>
 Date:   Fri Feb 25 18:46:35 2022 +0000
 
-linux-firmware: Update AMD SEV firmware
+    linux-firmware: Update AMD SEV firmware
 
-Update AMD SEV firmware to version 0.17 build 48 for AMD family 17h
-processors with models in the range 00h to 0fh.
+    Update AMD SEV firmware to version 0.17 build 48 for AMD family 17h
+    processors with models in the range 00h to 0fh.
 
-Update AMD SEV firmware to version 0.24 build 15 for AMD family 17h
-processors with models in the range 30h to 3fh.
+    Update AMD SEV firmware to version 0.24 build 15 for AMD family 17h
+    processors with models in the range 30h to 3fh.
 
-Update AMD SEV firmware to version 1.51 build 3 for AMD family 19h
-processors with models in the range 00h to 0fh.
+    Update AMD SEV firmware to version 1.51 build 3 for AMD family 19h
+    processors with models in the range 00h to 0fh.
 
-Signed-off-by: John Allen <john.allen@amd.com>
-Signed-off-by: Josh Boyer <jwboyer@kernel.org>
+    Signed-off-by: John Allen <john.allen@amd.com>
+    Signed-off-by: Josh Boyer <jwboyer@kernel.org>
