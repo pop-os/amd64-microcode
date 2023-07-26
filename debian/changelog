@@ -1,3 +1,9 @@
+amd64-microcode (3.20230719.1pop1) jammy; urgency=medium
+
+  * Backport to Pop
+
+ -- Michael Murphy <michael@mmurphy.dev>  Wed, 26 Jul 2023 16:39:54 +0200
+
 amd64-microcode (3.20230719.1) unstable; urgency=high
 
   * Update package data from linux-firmware 20230625-39-g59fbffa9:
