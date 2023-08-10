@@ -1,3 +1,9 @@
+amd64-microcode (3.20230808.1.1pop1) jammy; urgency=medium
+
+  * Backport AMD Inception fix to Pop
+
+ -- Michael Aaron Murphy <michael@mmurphy.dev>  Thu, 10 Aug 2023 17:08:22 +0200
+
 amd64-microcode (3.20230808.1.1) unstable; urgency=high
 
   * Update package data from linux-firmware 20230804-6-gf2eb058a
