@@ -1,8 +1,39 @@
+amd64-microcode (3.20230808.1.1) unstable; urgency=high
+
+  * Update package data from linux-firmware 20230804-6-gf2eb058a
+    * Fixes for CVE-2023-20569 "AMD Inception" on AMD Zen4 processors
+    (closes: #1043381)
+  * WARNING: for proper operation on AMD Genoa and Bergamo processors,
+    either up-to-date BIOS (with AGESA 1.0.0.8 or newer) or up-to-date
+    Linux kernels (minimal versions on each active Linux stable branch:
+    v4.19.289 v5.4.250 v5.10.187 v5.15.120 v6.1.37 v6.3.11 v6.4.1)
+    are *required*
+  * New Microcode patches:
+    +  Family=0x19 Model=0x11 Stepping=0x01: Patch=0x0a10113e
+    +  Family=0x19 Model=0x11 Stepping=0x02: Patch=0x0a10123e
+    +  Family=0x19 Model=0xa0 Stepping=0x02: Patch=0x0aa00212
+    +  Family=0x19 Model=0xa0 Stepping=0x01: Patch=0x0aa00116
+  * README: update for new release
+  * debian/NEWS: AMD Genoa/Bergamo kernel version restrictions
+  * debian/changelog: update entry for release 3.20230719.1, noting
+    that it included fixes for "AMD Inception" for Zen3 processors.
+    We did not know about AMD Inception at the time, but we always
+    include all available microcode updates when issuing a new
+    package, so we lucked out.
+  * debian/changelog: correct some information in 3.20230808.1
+    entry and reupload as 3.20230808.1.1.  There's no Zenbleed
+    for Zen4... oops!
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Thu, 10 Aug 2023 10:18:38 -0300
+
 amd64-microcode (3.20230719.1) unstable; urgency=high
 
   * Update package data from linux-firmware 20230625-39-g59fbffa9:
     * Fixes for CVE-2023-20593 "Zenbleed" on AMD Zen2 processors
       (closes: #1041863)
+    * Fixes for CVE-2023-20569 "AMD Inception" on AMD Zen3 processors
+      (this changelog entry time-travelled from the future, we were
+      lucky we always include all microcode updates available)
     * New Microcode patches:
       + Family=0x17 Model=0xa0 Stepping=0x00: Patch=0x08a00008
     * Updated Microcode patches:
