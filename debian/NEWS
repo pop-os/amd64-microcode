@@ -1,3 +1,18 @@
+amd64-microcode (3.20230808.1) unstable; urgency=high
+
+    This release requires *either* new-enough system firmware, *or* a
+    recent-enough Linux kernel to properly work on AMD Genoa and Bergamo
+    processors.
+
+    The firmware requirement is AGESA 1.0.0.8 or newer.
+
+    The Linux kernel requirement is a group of patches that are already
+    present in the Linux stable/LTS trees since versions: v4.19.289,
+    v5.4.250, v5.10.187, v5.15.120, v6.1.37, v6.3.11 and v6.4.1.  These
+    patches are also present in Linux v6.5-rc1.
+
+ -- Henrique de Moraes Holschuh <hmh@debian.org>  Thu, 10 Aug 2023 09:32:37 -0300
+
 amd64-microcode (2.20141028.1) unstable; urgency=medium
 
     This release drops support for automatically applying microcode updates
